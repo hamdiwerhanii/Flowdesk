@@ -1,0 +1,226 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  AGENT
+  CUSTOMER
+}
+
+enum MembershipStatus {
+  PENDING
+  ACTIVE
+  REJECTED
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  WAITING
+  RESOLVED
+  CLOSED
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TicketSource {
+  PORTAL
+  AGENT
+  IMPORT
+}
+
+enum PasswordTokenPurpose {
+  RESET
+  INVITE
+}
+
+enum ImportBatchStatus {
+  PREVIEW
+  COMMITTED
+  REVERTED
+}
+
+enum ImportRowStatus {
+  VALID
+  INVALID
+  IMPORTED
+}
+
+model Organization {
+  id            String   @id @default(uuid())
+  name          String
+  slug          String   @unique
+  /// Last ticket number handed out; tickets are numbered per organization.
+  ticketCounter Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  memberships   Membership[]
+  tickets       Ticket[]
+  importBatches ImportBatch[]
+
+  @@map("organizations")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  memberships      Membership[]
+  refreshTokens    RefreshToken[]
+  passwordTokens   PasswordToken[]
+  requestedTickets Ticket[]        @relation("TicketRequester")
+  assignedTickets  Ticket[]        @relation("TicketAssignee")
+  comments         TicketComment[]
+  importBatches    ImportBatch[]
+
+  @@map("users")
+}
+
+/// A user's role inside one organization (one role per organization).
+model Membership {
+  id             String           @id @default(uuid())
+  userId         String
+  organizationId String
+  role           Role
+  status         MembershipStatus @default(PENDING)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, organizationId])
+  @@index([organizationId, status])
+  @@map("memberships")
+}
+
+/// Opaque refresh token; only a SHA-256 hash of its secret is stored.
+model RefreshToken {
+  id         String    @id @default(uuid())
+  userId     String
+  tokenHash  String
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  createdAt  DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+/// Single-use link to set a password: "forgot password" (RESET) or an
+/// account created by an admin (INVITE). Only the secret's hash is stored.
+model PasswordToken {
+  id        String               @id @default(uuid())
+  userId    String
+  purpose   PasswordTokenPurpose
+  tokenHash String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime             @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, purpose])
+  @@map("password_tokens")
+}
+
+model Ticket {
+  id             String         @id @default(uuid())
+  number         Int
+  organizationId String
+  subject        String
+  description    String
+  status         TicketStatus   @default(OPEN)
+  priority       TicketPriority @default(MEDIUM)
+  source         TicketSource   @default(PORTAL)
+  requesterId    String
+  assigneeId     String?
+  importBatchId  String?
+  resolvedAt     DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  organization Organization    @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  requester    User            @relation("TicketRequester", fields: [requesterId], references: [id])
+  assignee     User?           @relation("TicketAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  importBatch  ImportBatch?    @relation(fields: [importBatchId], references: [id], onDelete: SetNull)
+  comments     TicketComment[]
+
+  @@unique([organizationId, number])
+  @@index([organizationId, status])
+  @@index([organizationId, assigneeId])
+  @@index([requesterId])
+  @@map("tickets")
+}
+
+model TicketComment {
+  id         String   @id @default(uuid())
+  ticketId   String
+  authorId   String
+  body       String
+  /// Internal notes are visible to agents and admins only.
+  isInternal Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  author User   @relation(fields: [authorId], references: [id])
+
+  @@index([ticketId, createdAt])
+  @@map("ticket_comments")
+}
+
+/// One uploaded CSV file: previewed first, then committed or reverted.
+model ImportBatch {
+  id             String            @id @default(uuid())
+  organizationId String
+  createdById    String
+  fileName       String
+  status         ImportBatchStatus @default(PREVIEW)
+  totalRows      Int
+  validRows      Int
+  invalidRows    Int
+  committedAt    DateTime?
+  revertedAt     DateTime?
+  createdAt      DateTime          @default(now())
+
+  organization Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdBy    User             @relation(fields: [createdById], references: [id])
+  rows         ImportBatchRow[]
+  tickets      Ticket[]
+
+  @@index([organizationId, createdAt])
+  @@map("import_batches")
+}
+
+model ImportBatchRow {
+  id        String          @id @default(uuid())
+  batchId   String
+  rowNumber Int
+  /// Normalized row values (subject, description, priority, emails...).
+  data      Json
+  errors    String[]
+  status    ImportRowStatus
+
+  batch ImportBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+
+  @@index([batchId, rowNumber])
+  @@map("import_batch_rows")
+}

@@ -1,0 +1,12 @@
+{{> header}}
+<p>Hi {{name}},</p>
+<p>Your ticket was marked as resolved by the {{organizationName}} team.</p>
+<p style="background:#f6f7fb;border-radius:8px;padding:12px 14px;margin:16px 0;">
+  <span style="color:#6b7280;font-family:monospace;">#{{number}}</span> <strong>{{subject}}</strong>
+</p>
+<p>If the problem isn't fixed, reply or reopen the ticket.</p>
+<p style="margin:28px 0;">
+  <a href="{{url}}" style="background:#4f46e5;color:#ffffff;text-decoration:none;padding:12px 20px;border-radius:8px;font-weight:600;display:inline-block;">View the ticket</a>
+</p>
+<p style="color:#6b7280;font-size:13px;">If the button doesn't work, copy this link into your browser:<br /><a href="{{url}}" style="color:#4f46e5;word-break:break-all;">{{url}}</a></p>
+{{> footer}}

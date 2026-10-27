@@ -1,0 +1,10 @@
+node_modules
+dist
+coverage
+.git
+.github
+.husky
+# Secrets come from the runtime environment, never from the image.
+.env
+.env.*
+*.log

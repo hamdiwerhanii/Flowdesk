@@ -1,0 +1,10 @@
+node_modules
+.next
+coverage
+.git
+.github
+.husky
+# Secrets and environment files never go into the image.
+.env
+.env.*
+*.log

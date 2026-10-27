@@ -1,0 +1,13 @@
+{
+  "name": "flowdesk",
+  "private": true,
+  "description": "Repository tooling only. The apps live in backend/ and frontend/, each with its own dependencies and lockfile.",
+  "packageManager": "pnpm@10.28.0",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "9.1.7",
+    "lint-staged": "17.0.7"
+  }
+}
