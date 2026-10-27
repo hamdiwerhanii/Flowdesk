@@ -25,7 +25,6 @@ export default function AccountRequestsRoot() {
   const { orgId, orgSlug } = useOrgContext();
   const pending = usePendingAccounts(orgId);
   const { approve, reject } = useAccountDecisions(orgId);
-  /** Role chosen per request before approving (defaults to customer). */
   const [roles, setRoles] = useState<Record<string, Role>>({});
   const busy = approve.isPending || reject.isPending;
 

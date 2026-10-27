@@ -52,7 +52,6 @@ export class DashboardService {
       }),
     ]);
 
-    // Fill every enum value so the frontend never deals with missing keys.
     const statusCounts = Object.fromEntries(
       Object.values(TicketStatus).map((s) => [
         s,

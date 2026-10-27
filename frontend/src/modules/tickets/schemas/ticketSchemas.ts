@@ -16,16 +16,13 @@ const ticketFields = {
   priority: z.enum(TicketPriority)
 };
 
-/** Customers leave requester/assignee empty; the API uses the caller. */
 export const newTicketSchema = z.object({
   ...ticketFields,
   requesterId: z.string(),
-  /** Empty string = unassigned. */
   assigneeId: z.string()
 });
 export type TicketFormValues = z.infer<typeof newTicketSchema>;
 
-/** Staff open tickets for a customer, so the requester is required. */
 export const staffTicketSchema = newTicketSchema.extend({
   requesterId: z.string().min(1, "validation.requesterRequired")
 });

@@ -61,7 +61,6 @@ model Organization {
   id            String   @id @default(uuid())
   name          String
   slug          String   @unique
-  /// Last ticket number handed out; tickets are numbered per organization.
   ticketCounter Int      @default(0)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -92,7 +91,6 @@ model User {
   @@map("users")
 }
 
-/// A user's role inside one organization (one role per organization).
 model Membership {
   id             String           @id @default(uuid())
   userId         String
@@ -110,14 +108,13 @@ model Membership {
   @@map("memberships")
 }
 
-/// Opaque refresh token; only a SHA-256 hash of its secret is stored.
 model RefreshToken {
-  id         String    @id @default(uuid())
-  userId     String
-  tokenHash  String
-  expiresAt  DateTime
-  revokedAt  DateTime?
-  createdAt  DateTime  @default(now())
+  id        String    @id @default(uuid())
+  userId    String
+  tokenHash String
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -125,8 +122,6 @@ model RefreshToken {
   @@map("refresh_tokens")
 }
 
-/// Single-use link to set a password: "forgot password" (RESET) or an
-/// account created by an admin (INVITE). Only the secret's hash is stored.
 model PasswordToken {
   id        String               @id @default(uuid())
   userId    String
@@ -176,7 +171,6 @@ model TicketComment {
   ticketId   String
   authorId   String
   body       String
-  /// Internal notes are visible to agents and admins only.
   isInternal Boolean  @default(false)
   createdAt  DateTime @default(now())
 
@@ -187,7 +181,6 @@ model TicketComment {
   @@map("ticket_comments")
 }
 
-/// One uploaded CSV file: previewed first, then committed or reverted.
 model ImportBatch {
   id             String            @id @default(uuid())
   organizationId String
@@ -214,7 +207,6 @@ model ImportBatchRow {
   id        String          @id @default(uuid())
   batchId   String
   rowNumber Int
-  /// Normalized row values (subject, description, priority, emails...).
   data      Json
   errors    String[]
   status    ImportRowStatus

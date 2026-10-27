@@ -73,7 +73,6 @@ export class TicketsService {
     return toPaginated(data, total, query.page, query.limit);
   }
 
-  /** 404 (not 403) for other customers' tickets, so ids aren't confirmed. */
   async findOne(
     orgId: string,
     caller: Caller,
@@ -189,7 +188,6 @@ export class TicketsService {
     };
   }
 
-  /** Customers may only close or reopen their own ticket. */
   private customerChanges(
     dto: UpdateTicketDto,
   ): Prisma.TicketUncheckedUpdateInput {

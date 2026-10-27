@@ -73,7 +73,6 @@ export function useAddComment(orgId: string, ticketId: string) {
     mutationFn: (data: CreateCommentInput) =>
       ticketsApi.addComment(orgId, ticketId, data),
     onSuccess: () => {
-      // A customer reply can reopen the ticket, so refresh it too.
       void queryClient.invalidateQueries({
         queryKey: ticketKeys.detail(orgId, ticketId)
       });

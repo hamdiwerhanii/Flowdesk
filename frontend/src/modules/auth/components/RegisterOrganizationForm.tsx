@@ -32,7 +32,6 @@ export default function RegisterOrganizationForm() {
     resolver: zodResolver(registerOrganizationSchema)
   });
 
-  // Suggest a slug from the name until the user edits the slug themselves.
   const organizationName = register("organizationName", {
     onChange: event => {
       if (!getFieldState("slug").isDirty) {

@@ -13,9 +13,7 @@ import {
 import type { Role } from "@/types/role.types";
 
 export type NavItem = {
-  /** Path after `/[orgSlug]`, e.g. `admin/tickets`. */
   path: string;
-  /** Key in the `nav` messages namespace. */
   labelKey: string;
   icon: LucideIcon;
 };
@@ -51,10 +49,6 @@ export const NAV_ITEMS: Record<Role, NavItem[]> = {
   ]
 };
 
-/**
- * The nav item for the current page: the longest path that matches, so
- * `/customer/tickets/new` highlights "New ticket", not "Tickets".
- */
 export function activeNavPath(
   pathname: string,
   orgSlug: string,

@@ -18,7 +18,6 @@ export function Textarea({ className, ...props }: ComponentProps<"textarea">) {
   );
 }
 
-/** Native select: accessible and keyboard-friendly with no extra library. */
 export function Select({ className, ...props }: ComponentProps<"select">) {
   return (
     <select className={cn(fieldClassName, "h-10 pr-8", className)} {...props} />

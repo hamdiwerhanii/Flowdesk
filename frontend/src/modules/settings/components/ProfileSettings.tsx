@@ -53,7 +53,6 @@ export default function ProfileSettings() {
       changePassword.mutate(
         { currentPassword, newPassword },
         {
-          // The backend ended every session; sign in again with the new password.
           onSuccess: async () => {
             toast.success(t("toasts.passwordChanged"));
             await logout();

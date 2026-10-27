@@ -20,10 +20,6 @@ import { ListTicketsQueryDto } from './dto/list-tickets-query.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { TicketsService } from './tickets.service';
 
-/**
- * Open to every member of `:orgId` (RoleGuard); the service narrows what
- * customers can see and change.
- */
 @ApiTags('tickets')
 @Controller('organizations/:orgId/tickets')
 export class TicketsController {

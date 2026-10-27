@@ -18,7 +18,6 @@ export class UserService {
     });
   }
 
-  /** Changing the password also signs out every other session. */
   async changePassword(userId: string, dto: ChangePasswordDto) {
     const user = await this.prisma.user.findUniqueOrThrow({
       where: { id: userId },

@@ -13,7 +13,6 @@ import { Button } from "../ui/button";
 import Sidebar from "./Sidebar";
 
 type AppShellProps = {
-  /** The role this area (admin / agent / customer) is for. */
   role: Role;
   children: ReactNode;
 };
@@ -23,7 +22,6 @@ export default function AppShell({ role, children }: AppShellProps) {
   const { role: myRole, orgSlug } = useOrgContext();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // The proxy already routes by role; this covers a role changed mid-session.
   if (myRole !== role) {
     return (
       <div className='flex min-h-screen items-center justify-center p-6'>

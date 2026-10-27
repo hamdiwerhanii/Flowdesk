@@ -1,7 +1,6 @@
 import { Transform } from 'class-transformer';
 import { IsEmail, IsString, Length, Matches, MinLength } from 'class-validator';
 
-/** Creates an organization and its first admin. */
 export class RegisterOrganizationDto {
   @IsString()
   @Length(2, 80)

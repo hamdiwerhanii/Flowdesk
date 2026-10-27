@@ -1,10 +1,5 @@
 import { createHash, randomBytes, timingSafeEqual } from 'crypto';
 
-/**
- * Opaque tokens are `<recordId>.<secret>` (refresh tokens, password links).
- * The record id makes lookup a primary-key read; only the SHA-256 of the
- * secret is stored, so a database leak does not leak usable tokens.
- */
 export const generateSecret = (): string =>
   randomBytes(48).toString('base64url');
 

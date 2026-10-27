@@ -146,7 +146,6 @@ export default function ImportBatchRoot({ batchId }: { batchId: string }) {
                   <ImportStatusBadge status={row.status} />
                 </TD>
                 <TD>
-                  {/* Row errors come from the server in English (they name CSV columns). */}
                   {row.errors.length ? (
                     <ul className='text-danger list-disc space-y-0.5 pl-4 text-xs'>
                       {row.errors.map(error => (

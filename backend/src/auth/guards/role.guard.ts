@@ -11,14 +11,6 @@ import { ROLE_KEY } from '../../decorators/role.decorator';
 import { PrismaService } from '../../prisma/prisma.service';
 import type { AuthenticatedRequest } from '../types/authenticated-request.type';
 
-/**
- * Global guard, runs after JwtGuard.
- *
- * Any route with an `:orgId` param requires an ACTIVE membership in that
- * organization, read from the database, so removing a member takes effect
- * immediately instead of when their access token expires. `@Roles()` then
- * narrows which roles of that membership may call the route.
- */
 @Injectable()
 export class RoleGuard implements CanActivate {
   constructor(

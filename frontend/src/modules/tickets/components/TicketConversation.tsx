@@ -57,7 +57,6 @@ type TicketConversationProps = {
   isStaff: boolean;
 };
 
-/** The ticket description followed by the replies, oldest first. */
 export default function TicketConversation({
   orgId,
   ticket,

@@ -9,11 +9,6 @@ import { PrismaService } from '../prisma/prisma.service';
 import type { TicketCommentEntity } from './entities/ticket-comment.entity';
 import type { TicketEntity } from './entities/ticket.entity';
 
-/**
- * Decides who gets an email when a ticket changes. Callers don't await it:
- * every method catches its own errors, so a notification problem never
- * fails the ticket operation.
- */
 @Injectable()
 export class TicketNotificationsService {
   private readonly logger = new Logger(TicketNotificationsService.name);
@@ -24,7 +19,6 @@ export class TicketNotificationsService {
     private readonly config: ConfigService<Env, true>,
   ) {}
 
-  /** Confirmation to the requester; heads-up to an assignee set at creation. */
   async ticketCreated(ticket: TicketEntity, actorId: string): Promise<void> {
     await this.safely('ticketCreated', async () => {
       this.mail.sendTicketReceived(
@@ -60,7 +54,6 @@ export class TicketNotificationsService {
     });
   }
 
-  /** Staff reply → requester; customer reply → assignee. Notes stay silent. */
   async commentCreated(
     ticket: TicketEntity,
     comment: TicketCommentEntity,
@@ -91,7 +84,6 @@ export class TicketNotificationsService {
     );
   }
 
-  /** The link points into the recipient's own workspace (their role). */
   private async context(
     ticket: TicketEntity,
     recipientId: string,

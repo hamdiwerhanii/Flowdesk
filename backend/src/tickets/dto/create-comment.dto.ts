@@ -5,7 +5,6 @@ export class CreateCommentDto {
   @Length(1, 10_000)
   body: string;
 
-  /** Staff only: a note customers never see. */
   @IsOptional()
   @IsBoolean()
   isInternal?: boolean;

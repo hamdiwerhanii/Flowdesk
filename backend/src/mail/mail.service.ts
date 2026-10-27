@@ -5,13 +5,6 @@ import type { Env } from '../config/env.validation';
 import type { Recipient, TicketMailContext } from './types/mail.types';
 import { appLink } from './utils/app-links.util';
 
-/**
- * One method per email, so callers never deal with template names.
- *
- * Sending is fire-and-forget: a slow or failing SMTP server must not fail
- * or slow down the API request that triggered the email. Failures are
- * logged. (For guaranteed delivery, move sending to a queue such as BullMQ.)
- */
 @Injectable()
 export class MailService {
   private readonly logger = new Logger(MailService.name);

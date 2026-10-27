@@ -15,7 +15,6 @@ import type { AuthUser } from "../types/auth.types";
 
 type Message = { message: string };
 
-/** After login, "/" lets the proxy pick the right organization and role. */
 function useEnterApp() {
   const setUser = useAuthStore(s => s.setUser);
   const router = useRouter();

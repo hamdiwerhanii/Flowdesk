@@ -8,10 +8,6 @@ import FullscreenLoader from "@/shared/components/FullscreenLoader";
 
 import { SocketProvider } from "./SocketProvider";
 
-/**
- * Client-side session check for authenticated areas. The proxy already
- * redirected anonymous visitors; this loads the user and opens the socket.
- */
 export default function AuthGate({ children }: { children: ReactNode }) {
   const status = useAuthStore(s => s.status);
   const checkAuth = useAuthStore(s => s.checkAuth);

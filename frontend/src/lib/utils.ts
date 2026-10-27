@@ -5,7 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-/** First path segment, used to keep the locale on hard redirects. */
 export const currentLocale = (): string =>
   typeof window === "undefined"
     ? "en"

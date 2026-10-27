@@ -39,12 +39,6 @@ const batchSummarySelect = {
   _count: { select: { tickets: true } },
 } satisfies Prisma.ImportBatchSelect;
 
-/**
- * CSV ticket import in three steps:
- *   preview  → parsing/ + resolution/, rows stored with their errors
- *   commit   → valid rows become tickets (re-resolved, members may have changed)
- *   revert   → deletes the tickets created by the batch
- */
 @Injectable()
 export class TicketImportsService {
   constructor(
@@ -160,7 +154,6 @@ export class TicketImportsService {
         }),
       });
 
-      // Rows that stopped resolving since the preview are marked invalid.
       const nowInvalid = resolved.filter((row) => row.errors.length > 0);
       for (const row of nowInvalid) {
         await tx.importBatchRow.updateMany({

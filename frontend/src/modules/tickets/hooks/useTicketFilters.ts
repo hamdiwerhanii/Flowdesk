@@ -10,10 +10,6 @@ import type {
   TicketStatus
 } from "../types/ticket.types";
 
-/**
- * Ticket filters live in the URL (?status=OPEN&page=2), so they survive a
- * refresh, the back button, and can be shared as a link.
- */
 export function useTicketFilters() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -33,7 +29,6 @@ export function useTicketFilters() {
     };
   }, [searchParams]);
 
-  /** Any change other than the page resets to page 1. */
   const setFilters = useCallback(
     (changes: Partial<TicketFilters>) => {
       const next: TicketFilters = {

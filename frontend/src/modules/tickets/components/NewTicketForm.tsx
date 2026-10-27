@@ -25,10 +25,6 @@ import { TicketPriority } from "../types/ticket.types";
 import { ticketPath, ticketsPath } from "../utils/ticketPaths";
 import RequesterPicker from "./RequesterPicker";
 
-/**
- * Customers describe their own problem; staff additionally choose the
- * customer the ticket is for and, optionally, who works on it.
- */
 export default function NewTicketForm() {
   const t = useTranslations();
   const { orgId, orgSlug, orgName, role, isStaff } = useOrgContext();

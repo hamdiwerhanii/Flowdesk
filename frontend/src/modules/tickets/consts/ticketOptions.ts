@@ -39,7 +39,6 @@ export const PRIORITY_DOT: Record<TicketPriority, string> = {
   URGENT: "bg-red-600"
 };
 
-/** Statuses a ticket is "done" in; customers can reopen from these. */
 export const DONE_STATUSES: TicketStatus[] = [
   TicketStatus.RESOLVED,
   TicketStatus.CLOSED

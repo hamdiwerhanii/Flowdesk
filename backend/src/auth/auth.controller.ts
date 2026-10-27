@@ -28,7 +28,6 @@ import {
   setAuthCookies,
 } from './utils/cookies.util';
 
-/** Brute-force protection for credential endpoints. */
 const STRICT_THROTTLE = { default: { limit: 10, ttl: 60_000 } };
 
 @ApiTags('auth')

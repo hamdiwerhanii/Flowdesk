@@ -2,7 +2,6 @@ import type { ComponentProps } from "react";
 
 import { cn } from "@/lib/utils";
 
-/** Pass color classes through `className` (see ticketOptions for the palette). */
 export function Badge({ className, ...props }: ComponentProps<"span">) {
   return (
     <span

@@ -12,7 +12,6 @@ import { socketClient } from "@/api/socket.client";
 
 const SocketContext = createContext({ connected: false });
 
-/** Opens the socket for authenticated pages and exposes its status. */
 export function SocketProvider({ children }: { children: ReactNode }) {
   const [connected, setConnected] = useState(false);
 

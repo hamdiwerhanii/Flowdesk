@@ -49,7 +49,6 @@ export const clearAuthCookies = (
   res.clearCookie(REFRESH_COOKIE, options);
 };
 
-/** Reads one cookie from a raw `Cookie` header (used by the socket handshake). */
 export const readCookie = (
   header: string | undefined,
   name: string,

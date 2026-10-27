@@ -10,7 +10,6 @@ const flatten = (messages: Messages, prefix = ""): string[] =>
       : flatten(value, `${prefix}${key}.`)
   );
 
-/** ICU placeholders such as {name} or {count, plural, ...}. */
 const placeholders = (text: string): string[] =>
   [...text.matchAll(/\{(\w+)[,}]/g)].map(match => match[1]).sort();
 

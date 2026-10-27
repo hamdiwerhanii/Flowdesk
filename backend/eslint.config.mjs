@@ -37,7 +37,6 @@ export default tseslint.config(
     },
   },
   {
-    // Tests build partial mocks; strict "unsafe" rules add noise there.
     files: ['**/*.spec.ts', 'test/**/*.ts'],
     rules: {
       '@typescript-eslint/no-unsafe-assignment': 'off',

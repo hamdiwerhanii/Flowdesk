@@ -37,7 +37,6 @@ export default function ForgotPasswordForm() {
     </Link>
   );
 
-  // Same screen whether or not the account exists (no account enumeration).
   if (forgot.isSuccess) {
     return (
       <AuthCard

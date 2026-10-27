@@ -7,7 +7,6 @@ type BreakdownItem = {
   barClass: string;
 };
 
-/** Horizontal bars, each relative to the largest value in the list. */
 export default function BreakdownList({ items }: { items: BreakdownItem[] }) {
   const max = Math.max(1, ...items.map(item => item.value));
   return (

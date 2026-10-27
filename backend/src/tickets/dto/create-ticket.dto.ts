@@ -14,12 +14,10 @@ export class CreateTicketDto {
   @IsEnum(TicketPriority)
   priority?: TicketPriority;
 
-  /** Staff only: open the ticket on behalf of this member. */
   @IsOptional()
   @IsUUID()
   requesterId?: string;
 
-  /** Staff only. */
   @IsOptional()
   @IsUUID()
   assigneeId?: string;

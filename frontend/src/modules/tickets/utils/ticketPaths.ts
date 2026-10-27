@@ -1,6 +1,5 @@
 import { type Role, roleSegment } from "@/types/role.types";
 
-/** Locale-less path (next-intl's Link adds the locale). */
 export const ticketsPath = (orgSlug: string, role: Role): string =>
   `/${orgSlug}/${roleSegment(role)}/tickets`;
 

@@ -25,7 +25,6 @@ import { MembersService } from './members.service';
 export class MembersController {
   constructor(private readonly membersService: MembersService) {}
 
-  /** Staff need it to pick assignees and requesters. */
   @Roles(...STAFF_ROLES)
   @Get()
   list(@Param('orgId') orgId: string, @Query() query: ListMembersQueryDto) {

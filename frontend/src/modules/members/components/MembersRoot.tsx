@@ -33,7 +33,6 @@ export default function MembersRoot() {
   const members = useMembers(orgId, filters);
   const { updateRole, remove } = useMemberMutations(orgId);
 
-  // One request per pause in typing, not per keystroke.
   useEffect(() => {
     const timer = setTimeout(
       () =>

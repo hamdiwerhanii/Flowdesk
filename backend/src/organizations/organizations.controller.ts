@@ -10,7 +10,6 @@ import { OrganizationsService } from './organizations.service';
 export class OrganizationsController {
   constructor(private readonly organizationsService: OrganizationsService) {}
 
-  /** Any active member (RoleGuard checks membership for `:orgId`). */
   @Get()
   findOne(@Param('orgId') orgId: string) {
     return this.organizationsService.findOne(orgId);

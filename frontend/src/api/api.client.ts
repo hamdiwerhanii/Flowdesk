@@ -1,13 +1,10 @@
 interface RequestConfig extends RequestInit {
-  /** Don't try a token refresh on 401 (login, refresh, logout). */
   skipAuth?: boolean;
 }
 
-/** Rejection value of every failed request. */
 export type ApiError = {
   status: number;
   message: string;
-  /** Machine-readable error code, when the endpoint sends one. */
   code?: string;
 };
 
@@ -19,16 +16,13 @@ export const isApiError = (error: unknown): error is ApiError =>
 
 class ApiClient {
   private baseURL = process.env.NEXT_PUBLIC_BACKEND_URL ?? "";
-  /** Shared by every request that hits a 401 while a refresh is running. */
   private refreshPromise: Promise<boolean> | null = null;
   private sessionExpiredHandler: (() => void) | null = null;
 
-  /** Called once when the refresh token is rejected too. */
   onSessionExpired(handler: () => void) {
     this.sessionExpiredHandler = handler;
   }
 
-  /** Single-flight refresh: concurrent callers await the same request. */
   refreshSession(): Promise<boolean> {
     this.refreshPromise ??= fetch(`${this.baseURL}/auth/refresh`, {
       method: "POST",
@@ -71,7 +65,6 @@ class ApiClient {
 
   private async toError(response: Response): Promise<ApiError> {
     const body = await response.json().catch(() => ({}));
-    // Validation errors send a list of messages.
     const message = Array.isArray(body.message)
       ? body.message.join(". ")
       : body.message;
@@ -121,7 +114,6 @@ class ApiClient {
 
 export const apiClient = new ApiClient();
 
-/** Builds `?a=1&b=2`, skipping empty values. */
 export const toQueryString = (params: object): string => {
   const search = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {

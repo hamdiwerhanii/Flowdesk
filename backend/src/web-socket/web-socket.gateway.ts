@@ -19,10 +19,8 @@ import {
   TicketEventPayload,
 } from './types/events.types';
 
-/** What the handshake middleware stores on `socket.data`. */
 type SocketData = { user?: JwtPayload };
 
-// Socket.IO types `socket.data` as any; read it through this typed helper.
 const socketData = (socket: Socket): SocketData => socket.data as SocketData;
 
 @WebSocketGateway({ namespace: '/ws', transports: ['websocket', 'polling'] })
@@ -37,7 +35,6 @@ export class WebsocketGateway implements OnGatewayInit, OnGatewayConnection {
     private readonly prisma: PrismaService,
   ) {}
 
-  /** Authenticates the handshake with the same httpOnly cookie as REST. */
   afterInit(server: Namespace) {
     server.use((socket, next) => {
       const token = readCookie(socket.handshake.headers.cookie, ACCESS_COOKIE);
@@ -52,7 +49,6 @@ export class WebsocketGateway implements OnGatewayInit, OnGatewayConnection {
     });
   }
 
-  /** Joins the user's room plus one room per ACTIVE membership. */
   async handleConnection(socket: Socket) {
     const user = socketData(socket).user;
     if (!user) return socket.disconnect(true);
@@ -85,7 +81,6 @@ export class WebsocketGateway implements OnGatewayInit, OnGatewayConnection {
     this.server.to(rooms.orgAdmins(orgId)).emit(event, data);
   }
 
-  /** Staff always hear about a ticket; the requester only if it isn't internal. */
   emitTicketEvent(
     requesterId: string,
     event: SocketEvent,

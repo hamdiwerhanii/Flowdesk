@@ -26,7 +26,6 @@ export const authApi = {
       skipAuth: true
     }),
 
-  /** Also sets the first password of an invited user. */
   resetPassword: (data: { token: string; password: string }) =>
     apiClient.post<{ message: string }>("/auth/reset-password", data, {
       skipAuth: true

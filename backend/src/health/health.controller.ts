@@ -4,7 +4,6 @@ import { SkipThrottle } from '@nestjs/throttler';
 import { Public } from '../decorators/public.decorator';
 import { PrismaService } from '../prisma/prisma.service';
 
-/** Used by Docker / load balancers to know the API can serve requests. */
 @ApiTags('health')
 @Public()
 @SkipThrottle()

@@ -10,13 +10,11 @@ import { Role } from "@/types/role.types";
 
 type RequesterPickerProps = {
   orgId: string;
-  /** Props from react-hook-form's `register("requesterId")`. */
   selectProps: ComponentProps<"select">;
 };
 
 const SEARCH_DEBOUNCE_MS = 300;
 
-/** Server-side customer search feeding a native select (keyboard-friendly). */
 export default function RequesterPicker({
   orgId,
   selectProps

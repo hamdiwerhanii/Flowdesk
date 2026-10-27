@@ -9,7 +9,6 @@ import { type Locale, locales } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "@/navigation";
 
-/** Switches language and stays on the same page (query string included). */
 export default function LocaleSwitcher({ className }: { className?: string }) {
   const t = useTranslations();
   const locale = useLocale();

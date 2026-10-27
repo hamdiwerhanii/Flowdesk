@@ -1,7 +1,6 @@
 import { Transform } from 'class-transformer';
 import { IsEmail, IsString, Length, Matches, MinLength } from 'class-validator';
 
-/** Customer self-signup into an existing organization (needs admin approval). */
 export class RegisterDto {
   @IsString()
   @Transform(({ value }) => String(value).trim().toLowerCase())

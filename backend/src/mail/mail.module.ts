@@ -26,7 +26,6 @@ import { MailService } from './mail.service';
           template: {
             dir: join(__dirname, 'templates'),
             adapter: new HandlebarsAdapter(),
-            // strict: a typo in a template variable fails loudly in tests.
             options: { strict: true },
           },
           options: {

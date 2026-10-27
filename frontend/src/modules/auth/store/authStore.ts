@@ -9,11 +9,8 @@ type AuthState = {
   user: AuthUser | null;
   status: AuthStatus;
   setUser: (user: AuthUser) => void;
-  /** Loads the current user from /auth/me (cookies carry the session). */
   checkAuth: () => Promise<void>;
-  /** Re-reads the user in the background (no loading state, no unmount). */
   refreshUser: () => Promise<void>;
-  /** Clears local state only (used when the session already expired). */
   clear: () => void;
   logout: () => Promise<void>;
 };

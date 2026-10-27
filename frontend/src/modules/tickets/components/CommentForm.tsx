@@ -36,7 +36,6 @@ export default function CommentForm({
     resolver: zodResolver(commentSchema),
     defaultValues: { body: "", isInternal: false }
   });
-  // useWatch (unlike watch()) works with the React Compiler.
   const isInternal = useWatch({ control, name: "isInternal" });
 
   const submit = handleSubmit(values =>

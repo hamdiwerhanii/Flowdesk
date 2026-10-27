@@ -15,32 +15,21 @@ import { roleSegment } from "./types/role.types";
 
 const intl = createMiddleware(routing);
 
-/** Signed-in users are sent to their workspace instead. */
 const AUTH_ROUTES = [
   "/login",
   "/register",
   "/register-organization",
   "/forgot-password"
 ];
-/**
- * Always reachable: a password link must work even if someone else is
- * signed in on this browser.
- */
 const OPEN_ROUTES = ["/reset-password"];
 const NO_ORG_ROUTE = "/no-org-access";
 
-/** Inside Docker the proxy reaches the API by service name, not localhost. */
 const BACKEND_URL =
   process.env.INTERNAL_BACKEND_URL ?? process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const matches = (routes: string[], path: string) =>
   routes.some(route => path === route || path.startsWith(`${route}/`));
 
-/**
- * Uses the access token if still valid, otherwise exchanges the refresh
- * token with the backend. The backend's Set-Cookie headers are forwarded
- * so the browser stores the rotated tokens.
- */
 async function resolveSession(
   request: NextRequest
 ): Promise<{ session: Session | null; setCookies: string[] }> {
@@ -78,7 +67,6 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
   const locale = locales.find(
     l => pathname === `/${l}` || pathname.startsWith(`/${l}/`)
   );
-  // No locale yet: next-intl redirects to /en/... (or the browser's language).
   if (!locale) return intl(request);
 
   const path = pathname.slice(locale.length + 1) || "/";
@@ -120,7 +108,6 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
     if (membership && roleSegment(membership.role) === target.segment) {
       return withCookies(intl(request));
     }
-    // Member of this organization, but under another role: go to their area.
     if (membership) return redirectTo(homePath(locale, membership));
   }
 

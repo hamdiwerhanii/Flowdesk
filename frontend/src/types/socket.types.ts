@@ -1,4 +1,3 @@
-/** Mirrors backend/src/web-socket/types/events.types.ts. */
 export const SocketEvent = {
   TICKET_CREATED: "ticket:created",
   TICKET_UPDATED: "ticket:updated",

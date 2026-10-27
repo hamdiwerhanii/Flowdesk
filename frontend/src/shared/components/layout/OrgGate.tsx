@@ -14,11 +14,6 @@ import { isStaffRole } from "@/types/role.types";
 import EmptyState from "../EmptyState";
 import { Button } from "../ui/button";
 
-/**
- * Renders the organization area only for an ACTIVE member. The proxy routes
- * by the access token, which can lag a removal by a few minutes; this check
- * uses /auth/me, so a removed member sees this screen instead of errors.
- */
 export default function OrgGate({ children }: { children: ReactNode }) {
   const t = useTranslations();
   const membership = useCurrentMembership();

@@ -9,7 +9,6 @@ export function useTickets(orgId: string, filters: TicketFilters) {
   return useQuery({
     queryKey: ticketKeys.list(orgId, filters),
     queryFn: () => ticketsApi.list(orgId, filters),
-    // Keeps the current page on screen while the next one loads.
     placeholderData: keepPreviousData,
     enabled: !!orgId
   });

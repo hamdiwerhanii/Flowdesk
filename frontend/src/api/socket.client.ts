@@ -4,11 +4,6 @@ import type { SocketEvent } from "@/types/socket.types";
 
 import { apiClient } from "./api.client";
 
-/**
- * One socket per tab. It authenticates with the httpOnly access_token cookie;
- * when the server rejects an expired token, the session is refreshed once
- * and the socket reconnects.
- */
 class SocketClient {
   private socket: Socket | null = null;
 
@@ -21,7 +16,6 @@ class SocketClient {
       reconnectionDelayMax: 10_000
     });
     socket.on("connect_error", async error => {
-      // Middleware rejections don't auto-reconnect; refresh, then retry.
       if (error.message === "Unauthorized" && !socket.active) {
         if (await apiClient.refreshSession()) socket.connect();
       }
@@ -35,13 +29,11 @@ class SocketClient {
     this.socket = null;
   }
 
-  /** Rooms are joined at connection time, so membership changes reconnect. */
   reconnect() {
     this.disconnect();
     this.connect();
   }
 
-  /** Subscribes and returns the unsubscribe function. */
   on<T>(
     event: SocketEvent | "connect" | "disconnect",
     handler: (payload: T) => void

@@ -1,3 +1,1 @@
-# lint-staged uses the closest "lint-staged" config to each staged file, so
-# backend/ and frontend/ files are checked with their own Prettier/ESLint.
 pnpm exec lint-staged

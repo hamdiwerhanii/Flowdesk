@@ -1,7 +1,6 @@
 export const MAX_IMPORT_FILE_BYTES = 2 * 1024 * 1024;
 export const MAX_IMPORT_ROWS = 1000;
 
-/** Columns the CSV must contain (after header normalization). */
 export const REQUIRED_COLUMNS = [
   'subject',
   'description',

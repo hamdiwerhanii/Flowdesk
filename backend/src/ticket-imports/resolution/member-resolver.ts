@@ -16,7 +16,6 @@ export type ResolvedRow = {
 
 type MemberLookup = Map<string, { userId: string; role: Role }>;
 
-/** Loads the ACTIVE members whose emails appear in the rows (one query). */
 export async function loadMembersByEmail(
   prisma: Prisma.TransactionClient,
   orgId: string,
@@ -44,10 +43,6 @@ export const emailsInRows = (rows: ParsedRow[]): string[] =>
       : [data.requester_email];
   });
 
-/**
- * Step 2 of an import: emails → member ids. Requesters may be any member;
- * assignees must be staff. Rows that already failed parsing pass through.
- */
 export function resolveRows(
   rows: ParsedRow[],
   members: MemberLookup,

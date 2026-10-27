@@ -3,7 +3,6 @@ import { MAX_IMPORT_ROWS, REQUIRED_COLUMNS } from '../consts/import.consts';
 import { TicketRow, ticketRowSchema } from './ticket-row.schema';
 
 export type ParsedRow = {
-  /** 1-based, counting the header as row 1 (matches a spreadsheet). */
   rowNumber: number;
   data: TicketRow | Record<string, string>;
   errors: string[];
@@ -12,7 +11,6 @@ export type ParsedRow = {
 export type ParseResult =
   { ok: true; rows: ParsedRow[] } | { ok: false; error: string };
 
-/** `Requester Email` → `requester_email`. */
 export const normalizeHeader = (header: string): string =>
   header
     .replace(/^\uFEFF/, '')
@@ -20,7 +18,6 @@ export const normalizeHeader = (header: string): string =>
     .toLowerCase()
     .replace(/[\s-]+/g, '_');
 
-/** Step 1 of an import: CSV text → validated rows (no database access). */
 export function parseTicketCsv(text: string): ParseResult {
   const result = Papa.parse<Record<string, string>>(text, {
     header: true,

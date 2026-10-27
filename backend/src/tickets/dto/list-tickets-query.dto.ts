@@ -11,12 +11,10 @@ export class ListTicketsQueryDto extends PaginationDto {
   @IsEnum(TicketPriority)
   priority?: TicketPriority;
 
-  /** `me`, `unassigned`, or a user id. Ignored for customers. */
   @IsOptional()
   @IsString()
   assignee?: string;
 
-  /** Matches the subject, or the ticket number (`42` or `#42`). */
   @IsOptional()
   @IsString()
   @MaxLength(100)

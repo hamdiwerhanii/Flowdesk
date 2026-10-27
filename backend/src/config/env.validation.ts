@@ -6,19 +6,16 @@ const envSchema = z.object({
     .default('development'),
   PORT: z.coerce.number().int().positive().default(4000),
   DATABASE_URL: z.string().min(1),
-  /** Comma-separated list of allowed browser origins. */
   FRONTEND_URLS: z.string().min(1),
   JWT_ACCESS_SECRET: z.string().min(32),
   JWT_ACCESS_TTL_SECONDS: z.coerce.number().int().positive().default(900),
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().positive().default(7),
   COOKIE_DOMAIN: z.string().optional(),
-  /** Public frontend URL used to build links in emails. */
   APP_URL: z.url(),
   PASSWORD_RESET_TTL_MINUTES: z.coerce.number().int().positive().default(60),
   INVITE_TTL_HOURS: z.coerce.number().int().positive().default(72),
   MAIL_HOST: z.string().min(1),
   MAIL_PORT: z.coerce.number().int().positive().default(587),
-  // z.coerce.boolean() would turn the string "false" into true.
   MAIL_SECURE: z
     .enum(['true', 'false'])
     .default('false')
@@ -30,7 +27,6 @@ const envSchema = z.object({
 
 export type Env = z.infer<typeof envSchema>;
 
-/** Fails fast at startup when a variable is missing or malformed. */
 export function validateEnv(config: Record<string, unknown>): Env {
   const result = envSchema.safeParse(config);
   if (!result.success) {

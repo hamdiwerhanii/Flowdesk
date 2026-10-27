@@ -37,14 +37,12 @@ import { PasswordTokenService } from './password-token.service';
 import type { JwtPayload } from './types/jwt-payload.type';
 import type { SessionTokens } from './utils/cookies.util';
 
-/** Same answer whether or not the email exists (no account enumeration). */
 const FORGOT_PASSWORD_MESSAGE =
   'If an account exists for this email, we sent a link to reset the password.';
 
 export type AuthUser = Awaited<ReturnType<AuthService['me']>>;
 export type Session = SessionTokens & { user: AuthUser };
 
-/** Compared against when the email is unknown, so timing doesn't reveal it. */
 const DUMMY_HASH = bcrypt.hashSync('flowdesk-timing-guard', BCRYPT_ROUNDS);
 
 @Injectable()
@@ -92,7 +90,6 @@ export class AuthService {
     return this.issueSession(user.id);
   }
 
-  /** Customer signup: the membership stays PENDING until an admin approves. */
   async register(dto: RegisterDto): Promise<{ message: string }> {
     const organization = await this.prisma.organization.findUnique({
       where: { slug: dto.orgSlug },
@@ -169,7 +166,6 @@ export class AuthService {
     return { message: FORGOT_PASSWORD_MESSAGE };
   }
 
-  /** Also used by invited users to set their first password. */
   async resetPassword(dto: ResetPasswordDto): Promise<{ message: string }> {
     await this.passwordTokens.consume(dto.token, dto.password);
     return { message: 'Your password was saved. You can log in now.' };
@@ -203,7 +199,6 @@ export class AuthService {
     return this.issueSession(user.id);
   }
 
-  /** Rotates the refresh token: each one can be exchanged exactly once. */
   async refresh(rawToken: string | undefined): Promise<Session> {
     const parsed = parseToken(rawToken);
     if (!parsed) throw new UnauthorizedException('Missing refresh token');
@@ -221,7 +216,6 @@ export class AuthService {
     if (record.revokedAt) {
       const age = Date.now() - record.revokedAt.getTime();
       if (age > REFRESH_REUSE_GRACE_MS) {
-        // An old token came back: assume it was stolen, end every session.
         await this.prisma.refreshToken.updateMany({
           where: { userId: record.userId, revokedAt: null },
           data: { revokedAt: new Date() },
@@ -246,7 +240,6 @@ export class AuthService {
     });
   }
 
-  /** The current user with their ACTIVE memberships. */
   async me(userId: string) {
     const user = await this.prisma.user.findUnique({
       where: { id: userId },

@@ -26,7 +26,6 @@ export class TicketCommentsService {
     return this.prisma.ticketComment.findMany({
       where: {
         ticketId,
-        // Customers never receive internal notes.
         ...(isStaff(caller.role) ? {} : { isInternal: false }),
       },
       include: ticketCommentInclude,
@@ -57,7 +56,6 @@ export class TicketCommentsService {
         },
         include: ticketCommentInclude,
       }),
-      // Bumps updatedAt so the ticket rises in the list; reopens on reply.
       this.prisma.ticket.update({
         where: { id: ticketId },
         data: reopen

@@ -11,7 +11,6 @@ import { PasswordTokenService } from './password-token.service';
   providers: [
     AuthService,
     PasswordTokenService,
-    // Order matters: authenticate first, then check the organization role.
     { provide: APP_GUARD, useClass: JwtGuard },
     { provide: APP_GUARD, useClass: RoleGuard },
   ],

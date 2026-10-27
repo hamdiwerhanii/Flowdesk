@@ -1,6 +1,5 @@
 import { AlertCircle } from "lucide-react";
 
-/** Form-level error (as opposed to a single field's error). */
 export default function FormError({ message }: { message?: string }) {
   if (!message) return null;
   return (

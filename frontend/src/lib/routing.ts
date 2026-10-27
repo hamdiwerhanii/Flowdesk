@@ -17,17 +17,11 @@ export type Session = {
   exp?: number;
 };
 
-/** Cookie remembering the last organization the user opened. */
 export const ORG_COOKIE = "flowdesk_org";
 
 const ROLE_SEGMENTS = ["admin", "agent", "customer"];
 const CLOCK_SKEW_SECONDS = 10;
 
-/**
- * Reads the access token WITHOUT verifying its signature. That is safe here
- * because it only decides which page to show: the backend verifies the token
- * on every API call. It also means the frontend never needs the JWT secret.
- */
 export function decodeSession(token: string | undefined): Session | null {
   if (!token) return null;
   try {
@@ -41,7 +35,6 @@ export function decodeSession(token: string | undefined): Session | null {
   }
 }
 
-/** `/acme/agent/tickets` → `{ orgSlug: "acme", segment: "agent" }`. */
 export function parseOrgRolePath(
   path: string
 ): { orgSlug: string; segment: string } | null {
@@ -50,7 +43,6 @@ export function parseOrgRolePath(
   return { orgSlug, segment };
 }
 
-/** The last-used organization if still valid, else the first by name. */
 export function pickDefaultRole(
   roles: SessionRole[],
   savedOrgSlug?: string

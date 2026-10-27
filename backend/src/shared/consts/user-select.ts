@@ -1,6 +1,5 @@
 import type { Prisma } from '@prisma/client';
 
-/** User fields safe to return to other members (never passwordHash). */
 export const publicUserSelect = {
   id: true,
   name: true,

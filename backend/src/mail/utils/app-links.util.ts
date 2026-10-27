@@ -1,9 +1,5 @@
 import { Role } from '@prisma/client';
 
-/**
- * Email links omit the locale: the frontend proxy adds it and then sends
- * the user to the right workspace (or to login first).
- */
 export const appLink = (appUrl: string, path: string): string =>
   `${appUrl.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
 

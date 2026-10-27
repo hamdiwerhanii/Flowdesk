@@ -21,7 +21,6 @@ async function bootstrap() {
   app.enableCors({ origin: allowedOrigins, credentials: true });
   app.useWebSocketAdapter(new SocketIoAdapter(app, allowedOrigins));
 
-  // Graceful shutdown: Docker's SIGTERM closes DB and socket connections.
   app.enableShutdownHooks();
 
   if (config.get('NODE_ENV', { infer: true }) !== 'production') {

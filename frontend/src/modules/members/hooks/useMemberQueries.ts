@@ -15,7 +15,6 @@ export function useMembers(orgId: string, filters: MemberFilters) {
   });
 }
 
-/** Every agent and admin (assignee options), sorted by name. */
 export function useStaffMembers(orgId: string, enabled = true) {
   return useQuery({
     queryKey: memberKeys.staff(orgId),

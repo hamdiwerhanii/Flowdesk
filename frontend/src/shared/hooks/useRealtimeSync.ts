@@ -18,10 +18,6 @@ import {
   type TicketEventPayload
 } from "@/types/socket.types";
 
-/**
- * Turns socket events into query invalidations. Events carry ids only;
- * the refetch goes through the REST API and its permission checks.
- */
 export function useRealtimeSync(
   orgId: string,
   userId: string,
@@ -34,7 +30,6 @@ export function useRealtimeSync(
     if (!orgId) return;
     const invalidate = (queryKey: QueryKey) =>
       void queryClient.invalidateQueries({ queryKey });
-    // Users in several organizations receive events for all of them.
     const forThisOrg =
       <T extends { orgId: string }>(handler: (payload: T) => void) =>
       (payload: T) => {
@@ -90,7 +85,6 @@ export function useRealtimeSync(
             invalidate(accountKeys.pending(orgId));
           }
           if (payload.userId === userId) {
-            // My own role changed: get a token with the new roles, rejoin rooms.
             await apiClient.refreshSession();
             await useAuthStore.getState().refreshUser();
             socketClient.reconnect();

@@ -15,7 +15,6 @@ const upperEnum = <T extends Record<string, string>>(values: T) =>
       : cleaned;
   }, z.enum(values).optional());
 
-/** One CSV row after header normalization; values are raw strings. */
 export const ticketRowSchema = z.object({
   subject: z
     .string()

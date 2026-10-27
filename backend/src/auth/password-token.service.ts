@@ -15,7 +15,6 @@ import { BCRYPT_ROUNDS } from './consts/auth.consts';
 
 const INVALID_LINK = 'This link is invalid or has expired';
 
-/** Single-use "set your password" links (forgot password + invitations). */
 @Injectable()
 export class PasswordTokenService {
   constructor(
@@ -23,7 +22,6 @@ export class PasswordTokenService {
     private readonly config: ConfigService<Env, true>,
   ) {}
 
-  /** Issues a new link and invalidates the user's previous one of that kind. */
   async issue(userId: string, purpose: PasswordTokenPurpose): Promise<string> {
     await this.prisma.passwordToken.updateMany({
       where: { userId, purpose, usedAt: null },
@@ -42,10 +40,6 @@ export class PasswordTokenService {
     return formatToken(record.id, secret);
   }
 
-  /**
-   * Sets the new password, burns the link, and signs the user out
-   * everywhere (an attacker who had a session loses it).
-   */
   async consume(rawToken: string, newPassword: string): Promise<void> {
     const parsed = parseToken(rawToken);
     if (!parsed) throw new BadRequestException(INVALID_LINK);
@@ -64,7 +58,6 @@ export class PasswordTokenService {
 
     const passwordHash = await bcrypt.hash(newPassword, BCRYPT_ROUNDS);
     await this.prisma.$transaction(async (tx) => {
-      // Conditional update: two concurrent submissions can't both succeed.
       const { count } = await tx.passwordToken.updateMany({
         where: { id: record.id, usedAt: null },
         data: { usedAt: new Date() },

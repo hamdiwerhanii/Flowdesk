@@ -1,11 +1,3 @@
-/**
- * Demo data: one organization with an admin, two agents, two customers,
- * one pending signup and a few tickets. Safe to re-run (it upserts).
- *
- *   pnpm seed
- *
- * Every account uses the password "password123".
- */
 import {
   MembershipStatus,
   PrismaClient,
@@ -52,7 +44,6 @@ async function main() {
       where: {
         userId_organizationId: { userId: user.id, organizationId: org.id },
       },
-      // Re-running the seed puts the demo signup back in the approval queue.
       update: person.status ? { status: person.status } : {},
       create: {
         userId: user.id,

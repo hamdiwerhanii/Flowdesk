@@ -20,7 +20,6 @@ describe("slugSchema", () => {
   it.each(["ac", "Acme", "acme--support", "-acme", "acme_support"])(
     "rejects %s",
     value => {
-      // Uppercase is lowercased first, so only check it is not returned as-is.
       const result = slugSchema.safeParse(value);
       if (result.success) expect(result.data).not.toBe(value);
       else expect(result.success).toBe(false);

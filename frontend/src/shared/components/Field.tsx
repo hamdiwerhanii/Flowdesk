@@ -8,13 +8,11 @@ import { Label } from "./ui/input";
 type FieldProps = {
   label: string;
   htmlFor: string;
-  /** A message key (e.g. `validation.invalidEmail`) or plain text from the API. */
   error?: string;
   hint?: string;
   children: ReactNode;
 };
 
-/** Label + control + hint/error, with the error announced to screen readers. */
 export default function Field({
   label,
   htmlFor,

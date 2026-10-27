@@ -14,7 +14,6 @@ const roles: SessionRole[] = [
 const base64url = (value: object) =>
   Buffer.from(JSON.stringify(value)).toString("base64url");
 
-/** decodeSession never verifies the signature, so a fake one is enough. */
 const token = async (expiresInSeconds: number, payload: object = { roles }) => {
   const exp = Math.floor(Date.now() / 1000) + expiresInSeconds;
   const body = { sub: "u1", email: "a@b.c", name: "A", exp, ...payload };

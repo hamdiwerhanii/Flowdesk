@@ -20,7 +20,6 @@ import {
 import AuthCard from "./AuthCard";
 import FormError from "./FormError";
 
-/** Handles both "forgot password" links and invitations (`?invite=1`). */
 export default function ResetPasswordForm() {
   const t = useTranslations("auth");
   const searchParams = useSearchParams();

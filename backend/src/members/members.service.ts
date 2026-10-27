@@ -64,10 +64,6 @@ export class MembersService {
     return toPaginated(data, total, query.page, query.limit);
   }
 
-  /**
-   * Adds an existing user, or creates and invites a new one. New users get
-   * an emailed link to choose their own password.
-   */
   async create(orgId: string, dto: CreateMemberDto) {
     const [existingUser, organization] = await Promise.all([
       this.prisma.user.findUnique({
@@ -77,7 +73,6 @@ export class MembersService {
       this.prisma.organization.findUniqueOrThrow({ where: { id: orgId } }),
     ]);
 
-    // A PENDING or REJECTED membership is reactivated with the chosen role.
     const current = existingUser?.memberships[0];
     if (current?.status === MembershipStatus.ACTIVE) {
       throw new ConflictException('This user is already a member');
@@ -89,7 +84,6 @@ export class MembersService {
         data: {
           email: dto.email,
           name: dto.name,
-          // Unusable until the invitation link sets a real password.
           passwordHash: await bcrypt.hash(generateSecret(), BCRYPT_ROUNDS),
         },
       }));

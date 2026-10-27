@@ -11,7 +11,6 @@ import type { AuthenticatedRequest } from '../types/authenticated-request.type';
 import type { JwtPayload } from '../types/jwt-payload.type';
 import { ACCESS_COOKIE } from '../utils/cookies.util';
 
-/** Global guard: every route needs a valid access token unless @Public(). */
 @Injectable()
 export class JwtGuard implements CanActivate {
   constructor(

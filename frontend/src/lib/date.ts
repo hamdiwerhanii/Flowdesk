@@ -7,7 +7,6 @@ const UNITS: [Intl.RelativeTimeFormatUnit, number][] = [
   ["minute", 60]
 ];
 
-/** "3 hours ago" / "il y a 3 heures", "yesterday" / "hier". */
 export function timeAgo(
   date: string | Date,
   locale = "en",

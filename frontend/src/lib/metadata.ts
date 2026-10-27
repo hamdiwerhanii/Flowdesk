@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server";
 
 type LocaleParams = { params: Promise<{ locale: string }> };
 
-/** `export const generateMetadata = pageTitle("nav.tickets")` in a page. */
 export const pageTitle =
   (key: string) =>
   async ({ params }: LocaleParams): Promise<Metadata> => {

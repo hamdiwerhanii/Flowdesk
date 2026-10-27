@@ -18,7 +18,6 @@ import { newTicketPath } from "../utils/ticketPaths";
 import TicketFiltersBar from "./TicketFiltersBar";
 import TicketTable from "./TicketTable";
 
-/** Ticket list for every role; the API scopes customers to their own tickets. */
 export default function TicketListRoot() {
   const t = useTranslations("tickets");
   const tCommon = useTranslations("common");

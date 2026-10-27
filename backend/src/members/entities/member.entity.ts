@@ -1,7 +1,6 @@
 import type { Prisma } from '@prisma/client';
 import { publicUserSelect } from '../../shared/consts/user-select';
 
-/** What the API returns for a membership row. */
 export const memberSelect = {
   id: true,
   role: true,

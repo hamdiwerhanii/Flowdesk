@@ -42,7 +42,6 @@ export function useUpdateOrganization(orgId: string) {
     mutationFn: data => settingsApi.updateOrganization(orgId, data),
     onSuccess: organization => {
       queryClient.setQueryData(organizationKey(orgId), organization);
-      // The sidebar shows the name from /auth/me.
       void refreshUser();
       toast.success(t("orgUpdated"));
     },

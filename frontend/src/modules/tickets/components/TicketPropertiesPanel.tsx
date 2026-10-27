@@ -128,7 +128,6 @@ export default function TicketPropertiesPanel({
                 }
               >
                 <option value=''>{t("tickets.unassigned")}</option>
-                {/* Keep the current assignee visible while the list loads. */}
                 {ticket.assignee && !staff.data && (
                   <option value={ticket.assignee.id}>
                     {ticket.assignee.name}

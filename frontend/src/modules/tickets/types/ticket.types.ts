@@ -49,7 +49,6 @@ export type TicketFilters = {
   page: number;
   status?: TicketStatus;
   priority?: TicketPriority;
-  /** `me`, `unassigned`, or a user id (staff only). */
   assignee?: string;
   search?: string;
 };
@@ -58,9 +57,7 @@ export type CreateTicketInput = {
   subject: string;
   description: string;
   priority?: TicketPriority;
-  /** Staff only: the customer the ticket is for. */
   requesterId?: string;
-  /** Staff only. */
   assigneeId?: string;
 };
 

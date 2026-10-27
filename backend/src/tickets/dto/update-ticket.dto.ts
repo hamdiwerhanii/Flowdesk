@@ -1,7 +1,6 @@
 import { IsEnum, IsOptional, IsString, IsUUID, Length } from 'class-validator';
 import { TicketPriority, TicketStatus } from '@prisma/client';
 
-/** Customers may only send `status` (CLOSED or OPEN); the rest is staff-only. */
 export class UpdateTicketDto {
   @IsOptional()
   @IsString()
@@ -21,7 +20,6 @@ export class UpdateTicketDto {
   @IsEnum(TicketPriority)
   priority?: TicketPriority;
 
-  /** `null` unassigns the ticket; omit it to leave the assignee unchanged. */
   @IsOptional()
   @IsUUID()
   assigneeId?: string | null;

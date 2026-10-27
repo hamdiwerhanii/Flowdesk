@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// Messages are translation keys; <Field> translates them.
 export const emailField = z
   .string()
   .trim()
@@ -60,7 +59,6 @@ export const resetPasswordSchema = z
   });
 export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
 
-/** "Acme Support Ltd." → "acme-support-ltd" */
 export const slugify = (value: string): string =>
   value
     .toLowerCase()

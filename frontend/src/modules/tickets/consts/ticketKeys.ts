@@ -1,9 +1,5 @@
 import type { TicketFilters } from "../types/ticket.types";
 
-/**
- * Query key factory: every ticket query of an organization starts with
- * `["tickets", orgId]`, so one invalidation can target all of them.
- */
 export const ticketKeys = {
   all: (orgId: string) => ["tickets", orgId] as const,
   lists: (orgId: string) => [...ticketKeys.all(orgId), "list"] as const,

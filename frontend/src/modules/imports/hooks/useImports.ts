@@ -31,7 +31,6 @@ export function useImportMutations(orgId: string) {
   const t = useTranslations("toasts");
   const onError = (error: ApiError) => toast.error(error.message);
 
-  /** Commit and revert change tickets as well as the batch. */
   const afterBatchChange = (batch: ImportBatchDetail) => {
     queryClient.setQueryData(importKeys.detail(orgId, batch.id), batch);
     void queryClient.invalidateQueries({ queryKey: importKeys.list(orgId) });
