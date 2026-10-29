@@ -1,9 +1,9 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import { ticketsApi } from "@/api/tickets.api";
+import type { TicketFilters } from "@/types/ticketTypes";
 
 import { ticketKeys } from "../consts/ticketKeys";
-import type { TicketFilters } from "../types/ticket.types";
 
 export function useTickets(orgId: string, filters: TicketFilters) {
   return useQuery({

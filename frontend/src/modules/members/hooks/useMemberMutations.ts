@@ -4,10 +4,10 @@ import { toast } from "sonner";
 
 import type { ApiError } from "@/api/api.client";
 import { membersApi } from "@/api/members.api";
-import type { Role } from "@/types/role.types";
+import type { CreateMemberInput, Member } from "@/types/memberTypes";
+import type { Role } from "@/types/roleTypes";
 
 import { memberKeys } from "../consts/memberKeys";
-import type { CreateMemberInput, Member } from "../types/member.types";
 
 export function useMemberMutations(orgId: string) {
   const queryClient = useQueryClient();

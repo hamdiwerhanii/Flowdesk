@@ -6,9 +6,9 @@ import type { ApiError } from "@/api/api.client";
 import { importsApi } from "@/api/imports.api";
 import { dashboardKeys } from "@/modules/dashboard/consts/dashboardKeys";
 import { ticketKeys } from "@/modules/tickets/consts/ticketKeys";
+import type { ImportBatch, ImportBatchDetail } from "@/types/importTypes";
 
 import { importKeys } from "../consts/importKeys";
-import type { ImportBatch, ImportBatchDetail } from "../types/import.types";
 
 export function useImportBatches(orgId: string) {
   return useQuery({

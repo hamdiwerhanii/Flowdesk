@@ -5,14 +5,14 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import { useStaffMembers } from "@/modules/members/hooks/useMemberQueries";
-import { Input, Select } from "@/shared/components/ui/input";
-
-import { PRIORITY_ORDER, STATUS_ORDER } from "../consts/ticketOptions";
+import { Input, Select } from "@/shared/components/Input";
 import type {
   TicketFilters,
   TicketPriority,
   TicketStatus
-} from "../types/ticket.types";
+} from "@/types/ticketTypes";
+
+import { PRIORITY_ORDER, STATUS_ORDER } from "../consts/ticketOptions";
 
 type TicketFiltersBarProps = {
   orgId: string;

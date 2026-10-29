@@ -6,8 +6,8 @@ import { useTranslations } from "next-intl";
 
 import useAuthStore from "@/modules/auth/store/authStore";
 import { useRouter } from "@/navigation";
+import { Button } from "@/shared/components/Button";
 import EmptyState from "@/shared/components/EmptyState";
-import { Button } from "@/shared/components/ui/button";
 
 export default function NoOrgAccessPage() {
   const t = useTranslations();

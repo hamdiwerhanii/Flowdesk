@@ -16,7 +16,7 @@ import {
   type MembershipChangedPayload,
   SocketEvent,
   type TicketEventPayload
-} from "@/types/socket.types";
+} from "@/types/socketTypes";
 
 export function useRealtimeSync(
   orgId: string,

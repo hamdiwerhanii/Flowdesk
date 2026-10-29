@@ -1,4 +1,4 @@
-import type { TicketFilters } from "../types/ticket.types";
+import type { TicketFilters } from "@/types/ticketTypes";
 
 export const ticketKeys = {
   all: (orgId: string) => ["tickets", orgId] as const,

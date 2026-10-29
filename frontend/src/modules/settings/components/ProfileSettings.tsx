@@ -8,18 +8,18 @@ import { toast } from "sonner";
 
 import useAuthStore from "@/modules/auth/store/authStore";
 import { useRouter } from "@/navigation";
-import Field from "@/shared/components/Field";
-import PageHeader from "@/shared/components/PageHeader";
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "@/shared/components/Button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle
-} from "@/shared/components/ui/card";
-import { Input } from "@/shared/components/ui/input";
-import { Spinner } from "@/shared/components/ui/spinner";
+} from "@/shared/components/Card";
+import Field from "@/shared/components/Field";
+import { Input } from "@/shared/components/Input";
+import PageHeader from "@/shared/components/PageHeader";
+import { Spinner } from "@/shared/components/Spinner";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
 
 import { useChangePassword, useUpdateProfile } from "../hooks/useSettings";

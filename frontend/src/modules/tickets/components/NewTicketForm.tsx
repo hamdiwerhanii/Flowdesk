@@ -6,13 +6,14 @@ import { useForm } from "react-hook-form";
 
 import { useStaffMembers } from "@/modules/members/hooks/useMemberQueries";
 import { useRouter } from "@/navigation";
+import { Button } from "@/shared/components/Button";
+import { Card, CardContent } from "@/shared/components/Card";
 import Field from "@/shared/components/Field";
+import { Input, Select, Textarea } from "@/shared/components/Input";
 import PageHeader from "@/shared/components/PageHeader";
-import { Button } from "@/shared/components/ui/button";
-import { Card, CardContent } from "@/shared/components/ui/card";
-import { Input, Select, Textarea } from "@/shared/components/ui/input";
-import { Spinner } from "@/shared/components/ui/spinner";
+import { Spinner } from "@/shared/components/Spinner";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
+import { TicketPriority } from "@/types/ticketTypes";
 
 import { PRIORITY_ORDER } from "../consts/ticketOptions";
 import { useCreateTicket } from "../hooks/useTicketMutations";
@@ -21,7 +22,6 @@ import {
   staffTicketSchema,
   type TicketFormValues
 } from "../schemas/ticketSchemas";
-import { TicketPriority } from "../types/ticket.types";
 import { ticketPath, ticketsPath } from "../utils/ticketPaths";
 import RequesterPicker from "./RequesterPicker";
 

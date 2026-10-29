@@ -1,5 +1,5 @@
-import type { Member } from "@/modules/members/types/member.types";
-import type { Role } from "@/types/role.types";
+import type { Member } from "@/types/memberTypes";
+import type { Role } from "@/types/roleTypes";
 
 import { apiClient } from "./api.client";
 

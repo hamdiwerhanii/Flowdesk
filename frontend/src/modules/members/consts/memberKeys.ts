@@ -1,4 +1,4 @@
-import type { MemberFilters } from "../types/member.types";
+import type { MemberFilters } from "@/types/memberTypes";
 
 export const memberKeys = {
   all: (orgId: string) => ["members", orgId] as const,

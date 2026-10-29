@@ -2,13 +2,13 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
 import { usePathname, useRouter } from "@/navigation";
-
-import { PRIORITY_ORDER, STATUS_ORDER } from "../consts/ticketOptions";
 import type {
   TicketFilters,
   TicketPriority,
   TicketStatus
-} from "../types/ticket.types";
+} from "@/types/ticketTypes";
+
+import { PRIORITY_ORDER, STATUS_ORDER } from "../consts/ticketOptions";
 
 export function useTicketFilters() {
   const searchParams = useSearchParams();

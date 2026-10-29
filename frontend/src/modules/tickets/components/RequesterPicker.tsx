@@ -5,8 +5,8 @@ import { useTranslations } from "next-intl";
 import { type ComponentProps, useEffect, useState } from "react";
 
 import { useMembers } from "@/modules/members/hooks/useMemberQueries";
-import { Input, Select } from "@/shared/components/ui/input";
-import { Role } from "@/types/role.types";
+import { Input, Select } from "@/shared/components/Input";
+import { Role } from "@/types/roleTypes";
 
 type RequesterPickerProps = {
   orgId: string;

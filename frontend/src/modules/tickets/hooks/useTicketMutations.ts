@@ -5,14 +5,14 @@ import { toast } from "sonner";
 import type { ApiError } from "@/api/api.client";
 import { ticketsApi } from "@/api/tickets.api";
 import { dashboardKeys } from "@/modules/dashboard/consts/dashboardKeys";
-
-import { ticketKeys } from "../consts/ticketKeys";
 import type {
   CreateCommentInput,
   CreateTicketInput,
   Ticket,
   UpdateTicketInput
-} from "../types/ticket.types";
+} from "@/types/ticketTypes";
+
+import { ticketKeys } from "../consts/ticketKeys";
 
 const showError = (error: ApiError) => toast.error(error.message);
 

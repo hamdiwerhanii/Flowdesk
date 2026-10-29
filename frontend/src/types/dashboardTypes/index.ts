@@ -1,8 +1,4 @@
-import type {
-  Ticket,
-  TicketPriority,
-  TicketStatus
-} from "@/modules/tickets/types/ticket.types";
+import type { Ticket, TicketPriority, TicketStatus } from "@/types/ticketTypes";
 
 export type DashboardStats = {
   statusCounts: Record<TicketStatus, number>;

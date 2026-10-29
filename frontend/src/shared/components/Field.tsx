@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 
-import { Label } from "./ui/input";
+import { Label } from "@/shared/components/Input";
 
 type FieldProps = {
   label: string;

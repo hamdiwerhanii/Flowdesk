@@ -2,8 +2,7 @@ import { create } from "zustand";
 
 import { authApi } from "@/api/auth.api";
 import { socketClient } from "@/api/socket.client";
-
-import type { AuthStatus, AuthUser } from "../types/auth.types";
+import type { AuthStatus, AuthUser } from "@/types/authTypes";
 
 type AuthState = {
   user: AuthUser | null;

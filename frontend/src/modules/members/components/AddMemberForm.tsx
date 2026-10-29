@@ -4,18 +4,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
-import Field from "@/shared/components/Field";
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "@/shared/components/Button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle
-} from "@/shared/components/ui/card";
-import { Input, Select } from "@/shared/components/ui/input";
-import { Spinner } from "@/shared/components/ui/spinner";
-import { Role } from "@/types/role.types";
+} from "@/shared/components/Card";
+import Field from "@/shared/components/Field";
+import { Input, Select } from "@/shared/components/Input";
+import { Spinner } from "@/shared/components/Spinner";
+import { Role } from "@/types/roleTypes";
 
 import { useMemberMutations } from "../hooks/useMemberMutations";
 import {

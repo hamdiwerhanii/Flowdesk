@@ -21,16 +21,16 @@ import {
   ticketsPath
 } from "@/modules/tickets/utils/ticketPaths";
 import { Link } from "@/navigation";
-import EmptyState from "@/shared/components/EmptyState";
-import PageHeader from "@/shared/components/PageHeader";
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "@/shared/components/Button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle
-} from "@/shared/components/ui/card";
-import { Spinner } from "@/shared/components/ui/spinner";
+} from "@/shared/components/Card";
+import EmptyState from "@/shared/components/EmptyState";
+import { Reveal } from "@/shared/components/Motion";
+import { Skeleton } from "@/shared/components/Skeleton";
 import { useFormatters } from "@/shared/hooks/useFormatters";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
 
@@ -54,8 +54,14 @@ export default function DashboardRoot() {
 
   if (dashboard.isPending) {
     return (
-      <div className='flex justify-center py-24'>
-        <Spinner />
+      <div className='space-y-6' role='status' aria-busy>
+        <Skeleton className='h-36 w-full rounded-3xl' />
+        <div className='grid gap-4 sm:grid-cols-2 xl:grid-cols-4'>
+          {Array.from({ length: 4 }, (_, index) => (
+            <Skeleton key={index} className='h-32' />
+          ))}
+        </div>
+        <Skeleton className='h-80 w-full' />
       </div>
     );
   }
@@ -82,39 +88,68 @@ export default function DashboardRoot() {
 
   return (
     <>
-      <PageHeader
-        title={t("dashboard.greeting", { name: user.name.split(" ")[0] })}
-        description={t("dashboard.description", { org: orgName })}
-      />
+      <Reveal className='mb-6'>
+        <section className='relative overflow-hidden rounded-3xl bg-linear-to-br from-teal-600 via-teal-700 to-emerald-800 px-7 py-8 text-white shadow-lg shadow-teal-900/10'>
+          <div
+            className='animate-float pointer-events-none absolute -top-16 -right-10 size-64 rounded-full bg-white/10 blur-2xl'
+            aria-hidden
+          />
+          <div
+            className='animate-float pointer-events-none absolute -bottom-24 left-1/3 size-56 rounded-full bg-amber-300/20 blur-3xl [animation-delay:-4s]'
+            aria-hidden
+          />
+          <p className='relative text-sm font-medium text-teal-100'>
+            {orgName}
+          </p>
+          <h1 className='relative mt-1 text-3xl font-extrabold tracking-tight sm:text-4xl'>
+            {t("dashboard.greeting", { name: user.name.split(" ")[0] })}
+          </h1>
+          <p className='relative mt-2 max-w-xl text-sm text-teal-50/85'>
+            {t("dashboard.description", { org: orgName })}
+          </p>
+        </section>
+      </Reveal>
 
       <div className='grid gap-4 sm:grid-cols-2 xl:grid-cols-4'>
-        <StatCard
-          label={t("dashboard.openTickets")}
-          value={open}
-          icon={Inbox}
-          hint={t("dashboard.openHint")}
-        />
-        <StatCard
-          label={t("dashboard.unassigned")}
-          value={stats.unassignedOpen}
-          icon={UserX}
-          hint={t("dashboard.unassignedHint")}
-        />
-        <StatCard
-          label={t("dashboard.assignedToMe")}
-          value={stats.assignedToMeOpen}
-          icon={UserRound}
-        />
-        <StatCard
-          label={t("dashboard.resolvedWeek")}
-          value={stats.resolvedLast7Days}
-          icon={CheckCircle2}
-          hint={t("dashboard.createdWeek", { count: stats.createdLast7Days })}
-        />
+        <Reveal index={1} className='h-full'>
+          <StatCard
+            tone='teal'
+            label={t("dashboard.openTickets")}
+            value={open}
+            icon={Inbox}
+            hint={t("dashboard.openHint")}
+          />
+        </Reveal>
+        <Reveal index={2} className='h-full'>
+          <StatCard
+            tone='amber'
+            label={t("dashboard.unassigned")}
+            value={stats.unassignedOpen}
+            icon={UserX}
+            hint={t("dashboard.unassignedHint")}
+          />
+        </Reveal>
+        <Reveal index={3} className='h-full'>
+          <StatCard
+            tone='indigo'
+            label={t("dashboard.assignedToMe")}
+            value={stats.assignedToMeOpen}
+            icon={UserRound}
+          />
+        </Reveal>
+        <Reveal index={4} className='h-full'>
+          <StatCard
+            tone='emerald'
+            label={t("dashboard.resolvedWeek")}
+            value={stats.resolvedLast7Days}
+            icon={CheckCircle2}
+            hint={t("dashboard.createdWeek", { count: stats.createdLast7Days })}
+          />
+        </Reveal>
       </div>
 
       <div className='mt-6 grid gap-6 lg:grid-cols-3'>
-        <Card className='lg:col-span-2'>
+        <Card className='animate-fade-up [animation-delay:250ms] lg:col-span-2'>
           <CardHeader className='flex flex-row items-center justify-between'>
             <CardTitle>{t("dashboard.recentlyUpdated")}</CardTitle>
             <Button asChild variant='link' size='sm'>
@@ -130,16 +165,20 @@ export default function DashboardRoot() {
               </p>
             ) : (
               <ul className='divide-y'>
-                {stats.recentTickets.map(ticket => (
-                  <li key={ticket.id}>
+                {stats.recentTickets.map((ticket, index) => (
+                  <li
+                    key={ticket.id}
+                    className='animate-fade-up'
+                    style={{ animationDelay: `${300 + index * 50}ms` }}
+                  >
                     <Link
                       href={ticketPath(orgSlug, role, ticket.id)}
-                      className='hover:bg-muted/60 flex flex-wrap items-center gap-x-3 gap-y-1 px-5 py-3'
+                      className='hover:bg-primary-soft/60 group flex flex-wrap items-center gap-x-3 gap-y-1 px-6 py-3.5 transition-colors'
                     >
                       <span className='text-muted-foreground font-mono text-xs'>
                         {formatTicketNumber(ticket.number)}
                       </span>
-                      <span className='min-w-0 flex-1 truncate text-sm font-medium'>
+                      <span className='group-hover:text-primary min-w-0 flex-1 truncate text-sm font-semibold transition-colors'>
                         {ticket.subject}
                       </span>
                       <PriorityLabel priority={ticket.priority} />
@@ -156,7 +195,7 @@ export default function DashboardRoot() {
         </Card>
 
         <div className='space-y-6'>
-          <Card>
+          <Card className='animate-fade-up [animation-delay:320ms]'>
             <CardHeader>
               <CardTitle>{t("dashboard.byStatus")}</CardTitle>
             </CardHeader>

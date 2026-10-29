@@ -5,11 +5,11 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { Link } from "@/navigation";
+import { Button } from "@/shared/components/Button";
+import { Card } from "@/shared/components/Card";
 import EmptyState from "@/shared/components/EmptyState";
-import { Button } from "@/shared/components/ui/button";
-import { Card } from "@/shared/components/ui/card";
-import { Spinner } from "@/shared/components/ui/spinner";
-import { Table, TBody, TD, TH, THead, TR } from "@/shared/components/ui/table";
+import { Spinner } from "@/shared/components/Spinner";
+import { Table, TBody, TD, TH, THead, TR } from "@/shared/components/Table";
 import { useFormatters } from "@/shared/hooks/useFormatters";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
 

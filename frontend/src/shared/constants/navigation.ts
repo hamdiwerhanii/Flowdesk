@@ -10,7 +10,7 @@ import {
   Users
 } from "lucide-react";
 
-import type { Role } from "@/types/role.types";
+import type { Role } from "@/types/roleTypes";
 
 export type NavItem = {
   path: string;

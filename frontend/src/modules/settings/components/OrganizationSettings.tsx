@@ -5,18 +5,18 @@ import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import Field from "@/shared/components/Field";
-import PageHeader from "@/shared/components/PageHeader";
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "@/shared/components/Button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle
-} from "@/shared/components/ui/card";
-import { Input } from "@/shared/components/ui/input";
-import { Spinner } from "@/shared/components/ui/spinner";
+} from "@/shared/components/Card";
+import Field from "@/shared/components/Field";
+import { Input } from "@/shared/components/Input";
+import PageHeader from "@/shared/components/PageHeader";
+import { Spinner } from "@/shared/components/Spinner";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
 
 import { useOrganization, useUpdateOrganization } from "../hooks/useSettings";

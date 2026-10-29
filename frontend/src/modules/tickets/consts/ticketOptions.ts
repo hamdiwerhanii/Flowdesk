@@ -1,4 +1,4 @@
-import { TicketPriority, TicketStatus } from "../types/ticket.types";
+import { TicketPriority, TicketStatus } from "@/types/ticketTypes";
 
 export const STATUS_ORDER: TicketStatus[] = [
   TicketStatus.OPEN,
@@ -16,20 +16,18 @@ export const PRIORITY_ORDER: TicketPriority[] = [
 ];
 
 export const STATUS_STYLES: Record<TicketStatus, string> = {
-  OPEN: "bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300",
-  IN_PROGRESS:
-    "bg-violet-100 text-violet-800 dark:bg-violet-950 dark:text-violet-300",
-  WAITING: "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300",
-  RESOLVED:
-    "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300",
-  CLOSED: "bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+  OPEN: "bg-sky-100 text-sky-800",
+  IN_PROGRESS: "bg-violet-100 text-violet-800",
+  WAITING: "bg-amber-100 text-amber-800",
+  RESOLVED: "bg-emerald-100 text-emerald-800",
+  CLOSED: "bg-zinc-200 text-zinc-700"
 };
 
 export const PRIORITY_STYLES: Record<TicketPriority, string> = {
-  LOW: "text-zinc-600 dark:text-zinc-400",
-  MEDIUM: "text-sky-700 dark:text-sky-400",
-  HIGH: "text-orange-700 dark:text-orange-400",
-  URGENT: "text-red-700 dark:text-red-400"
+  LOW: "text-zinc-600",
+  MEDIUM: "text-sky-700",
+  HIGH: "text-orange-700",
+  URGENT: "text-red-700"
 };
 
 export const PRIORITY_DOT: Record<TicketPriority, string> = {

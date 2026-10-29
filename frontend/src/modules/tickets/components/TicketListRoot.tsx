@@ -4,12 +4,12 @@ import { AlertTriangle, Inbox, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Link } from "@/navigation";
+import { Button } from "@/shared/components/Button";
+import { Card } from "@/shared/components/Card";
 import EmptyState from "@/shared/components/EmptyState";
 import PageHeader from "@/shared/components/PageHeader";
 import Pagination from "@/shared/components/Pagination";
-import { Button } from "@/shared/components/ui/button";
-import { Card } from "@/shared/components/ui/card";
-import { Spinner } from "@/shared/components/ui/spinner";
+import { Spinner } from "@/shared/components/Spinner";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
 
 import { useTicketFilters } from "../hooks/useTicketFilters";

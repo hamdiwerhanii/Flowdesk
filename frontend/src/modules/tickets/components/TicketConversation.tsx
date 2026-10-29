@@ -4,11 +4,11 @@ import { Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
-import { Spinner } from "@/shared/components/ui/spinner";
+import { Spinner } from "@/shared/components/Spinner";
 import { useFormatters } from "@/shared/hooks/useFormatters";
+import type { Ticket } from "@/types/ticketTypes";
 
 import { useTicketComments } from "../hooks/useTicketQueries";
-import type { Ticket } from "../types/ticket.types";
 import CommentForm from "./CommentForm";
 
 type MessageProps = {
@@ -26,8 +26,7 @@ function Message({ author, date, body, internal, highlight }: MessageProps) {
     <article
       className={cn(
         "bg-card rounded-xl border p-4",
-        internal &&
-          "border-amber-300 bg-amber-50/60 dark:border-amber-800 dark:bg-amber-950/30",
+        internal && "border-amber-300 bg-amber-50/60",
         highlight && "border-primary/30"
       )}
     >
@@ -41,7 +40,7 @@ function Message({ author, date, body, internal, highlight }: MessageProps) {
           {timeAgo(date)}
         </time>
         {internal && (
-          <span className='inline-flex items-center gap-1 text-xs font-medium text-amber-700 dark:text-amber-400'>
+          <span className='inline-flex items-center gap-1 text-xs font-medium text-amber-700'>
             <Lock className='size-3' aria-hidden /> {t("internalNote")}
           </span>
         )}

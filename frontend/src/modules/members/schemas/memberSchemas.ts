@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { emailField, nameField } from "@/modules/auth/schemas/authSchemas";
-import { Role } from "@/types/role.types";
+import { Role } from "@/types/roleTypes";
 
 export const addMemberSchema = z.object({
   name: nameField,

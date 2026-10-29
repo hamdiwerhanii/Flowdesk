@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 
+import { roleSegment } from "@/shared/utils/role.utils";
+
 import { locales } from "./i18n/config";
 import {
   decodeSession,
@@ -11,7 +13,6 @@ import {
   type Session
 } from "./lib/routing";
 import { routing } from "./navigation";
-import { roleSegment } from "./types/role.types";
 
 const intl = createMiddleware(routing);
 

@@ -5,18 +5,18 @@ import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 
 import { Link, useRouter } from "@/navigation";
-import EmptyState from "@/shared/components/EmptyState";
-import PageHeader from "@/shared/components/PageHeader";
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "@/shared/components/Button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle
-} from "@/shared/components/ui/card";
-import { Spinner } from "@/shared/components/ui/spinner";
-import { Table, TBody, TD, TH, THead, TR } from "@/shared/components/ui/table";
+} from "@/shared/components/Card";
+import EmptyState from "@/shared/components/EmptyState";
+import PageHeader from "@/shared/components/PageHeader";
+import { Spinner } from "@/shared/components/Spinner";
+import { Table, TBody, TD, TH, THead, TR } from "@/shared/components/Table";
 import { useFormatters } from "@/shared/hooks/useFormatters";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
 

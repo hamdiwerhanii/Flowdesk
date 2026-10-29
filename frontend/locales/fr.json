@@ -327,5 +327,12 @@
     "passwordChanged": "Mot de passe modifié. Veuillez vous reconnecter.",
     "newTicket": "Nouveau ticket reçu",
     "newAccountRequest": "Nouvelle demande de compte en attente de validation"
+  },
+  "authBrand": {
+    "title": "Chaque question client, traitée en équipe.",
+    "subtitle": "Tickets, mises à jour en temps réel et notes internes dans un espace serein.",
+    "point1": "Mises à jour en direct pour toute l'équipe",
+    "point2": "Notes internes privées",
+    "point3": "Imports et notifications par e-mail"
   }
 }

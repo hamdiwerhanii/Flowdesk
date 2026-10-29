@@ -3,14 +3,14 @@
 import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
-import { Badge } from "@/shared/components/ui/badge";
+import { Badge } from "@/shared/components/Badge";
+import type { TicketPriority, TicketStatus } from "@/types/ticketTypes";
 
 import {
   PRIORITY_DOT,
   PRIORITY_STYLES,
   STATUS_STYLES
 } from "../consts/ticketOptions";
-import type { TicketPriority, TicketStatus } from "../types/ticket.types";
 
 export function StatusBadge({ status }: { status: TicketStatus }) {
   const t = useTranslations("ticketStatus");

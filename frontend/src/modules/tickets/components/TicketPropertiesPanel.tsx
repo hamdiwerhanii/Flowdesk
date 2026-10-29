@@ -6,16 +6,21 @@ import type { ReactNode } from "react";
 
 import { useStaffMembers } from "@/modules/members/hooks/useMemberQueries";
 import { useRouter } from "@/navigation";
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "@/shared/components/Button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle
-} from "@/shared/components/ui/card";
-import { Label, Select } from "@/shared/components/ui/input";
+} from "@/shared/components/Card";
+import { Label, Select } from "@/shared/components/Input";
 import { useFormatters } from "@/shared/hooks/useFormatters";
-import { Role } from "@/types/role.types";
+import { Role } from "@/types/roleTypes";
+import {
+  type Ticket,
+  type TicketPriority,
+  TicketStatus
+} from "@/types/ticketTypes";
 
 import {
   DONE_STATUSES,
@@ -23,11 +28,6 @@ import {
   STATUS_ORDER
 } from "../consts/ticketOptions";
 import { useDeleteTicket, useUpdateTicket } from "../hooks/useTicketMutations";
-import {
-  type Ticket,
-  type TicketPriority,
-  TicketStatus
-} from "../types/ticket.types";
 import { ticketsPath } from "../utils/ticketPaths";
 import { PriorityLabel, StatusBadge } from "./TicketBadges";
 

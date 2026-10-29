@@ -1,3 +1,4 @@
+import type { Paginated } from "@/types/apiTypes";
 import type {
   CreateCommentInput,
   CreateTicketInput,
@@ -5,8 +6,7 @@ import type {
   TicketComment,
   TicketFilters,
   UpdateTicketInput
-} from "@/modules/tickets/types/ticket.types";
-import type { Paginated } from "@/types/api.types";
+} from "@/types/ticketTypes";
 
 import { apiClient, toQueryString } from "./api.client";
 

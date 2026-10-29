@@ -4,15 +4,15 @@ import { AlertTriangle, Check, UserCheck, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
+import { Button } from "@/shared/components/Button";
+import { Card } from "@/shared/components/Card";
 import EmptyState from "@/shared/components/EmptyState";
+import { Select } from "@/shared/components/Input";
 import PageHeader from "@/shared/components/PageHeader";
-import { Button } from "@/shared/components/ui/button";
-import { Card } from "@/shared/components/ui/card";
-import { Select } from "@/shared/components/ui/input";
-import { Spinner } from "@/shared/components/ui/spinner";
+import { Spinner } from "@/shared/components/Spinner";
 import { useFormatters } from "@/shared/hooks/useFormatters";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
-import { Role } from "@/types/role.types";
+import { Role } from "@/types/roleTypes";
 
 import {
   useAccountDecisions,

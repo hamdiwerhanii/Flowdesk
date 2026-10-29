@@ -1,4 +1,4 @@
-import type { DashboardStats } from "@/modules/dashboard/types/dashboard.types";
+import type { DashboardStats } from "@/types/dashboardTypes";
 
 import { apiClient } from "./api.client";
 

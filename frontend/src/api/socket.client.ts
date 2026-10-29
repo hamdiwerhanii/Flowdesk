@@ -1,6 +1,6 @@
 import { io, type Socket } from "socket.io-client";
 
-import type { SocketEvent } from "@/types/socket.types";
+import type { SocketEvent } from "@/types/socketTypes";
 
 import { apiClient } from "./api.client";
 

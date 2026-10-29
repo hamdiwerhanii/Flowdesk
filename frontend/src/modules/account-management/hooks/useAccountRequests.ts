@@ -5,8 +5,8 @@ import { toast } from "sonner";
 import { accountsApi } from "@/api/accounts.api";
 import type { ApiError } from "@/api/api.client";
 import { memberKeys } from "@/modules/members/consts/memberKeys";
-import type { Member } from "@/modules/members/types/member.types";
-import type { Role } from "@/types/role.types";
+import type { Member } from "@/types/memberTypes";
+import type { Role } from "@/types/roleTypes";
 
 import { accountKeys } from "../consts/accountKeys";
 

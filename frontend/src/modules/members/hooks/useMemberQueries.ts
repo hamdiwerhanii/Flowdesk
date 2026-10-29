@@ -1,10 +1,10 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import { membersApi } from "@/api/members.api";
-import { Role } from "@/types/role.types";
+import type { MemberFilters } from "@/types/memberTypes";
+import { Role } from "@/types/roleTypes";
 
 import { memberKeys } from "../consts/memberKeys";
-import type { MemberFilters } from "../types/member.types";
 
 export function useMembers(orgId: string, filters: MemberFilters) {
   return useQuery({

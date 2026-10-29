@@ -1,4 +1,5 @@
-import { type Role, roleSegment } from "@/types/role.types";
+import { roleSegment } from "@/shared/utils/role.utils";
+import { type Role } from "@/types/roleTypes";
 
 export const ticketsPath = (orgSlug: string, role: Role): string =>
   `/${orgSlug}/${roleSegment(role)}/tickets`;

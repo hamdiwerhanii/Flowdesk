@@ -3,7 +3,7 @@ import type {
   RegisterOrganizationValues,
   RegisterValues
 } from "@/modules/auth/schemas/authSchemas";
-import type { AuthUser } from "@/modules/auth/types/auth.types";
+import type { AuthUser } from "@/types/authTypes";
 
 import { apiClient } from "./api.client";
 

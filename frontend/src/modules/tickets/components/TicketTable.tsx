@@ -3,11 +3,11 @@
 import { useTranslations } from "next-intl";
 
 import { Link } from "@/navigation";
-import { Table, TBody, TD, TH, THead, TR } from "@/shared/components/ui/table";
+import { Table, TBody, TD, TH, THead, TR } from "@/shared/components/Table";
 import { useFormatters } from "@/shared/hooks/useFormatters";
-import type { Role } from "@/types/role.types";
+import type { Role } from "@/types/roleTypes";
+import type { Ticket } from "@/types/ticketTypes";
 
-import type { Ticket } from "../types/ticket.types";
 import { formatTicketNumber, ticketPath } from "../utils/ticketPaths";
 import { PriorityLabel, StatusBadge } from "./TicketBadges";
 
@@ -40,15 +40,19 @@ export default function TicketTable({
         </tr>
       </THead>
       <TBody>
-        {tickets.map(ticket => (
-          <TR key={ticket.id}>
+        {tickets.map((ticket, index) => (
+          <TR
+            key={ticket.id}
+            className='animate-fade-up'
+            style={{ animationDelay: `${Math.min(index, 12) * 35}ms` }}
+          >
             <TD className='text-muted-foreground font-mono text-xs'>
               {formatTicketNumber(ticket.number)}
             </TD>
             <TD className='max-w-md'>
               <Link
                 href={ticketPath(orgSlug, role, ticket.id)}
-                className='hover:text-primary block truncate font-medium'
+                className='hover:text-primary block truncate font-semibold transition-colors'
               >
                 {ticket.subject}
               </Link>

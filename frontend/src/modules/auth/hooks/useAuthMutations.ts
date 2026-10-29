@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import type { ApiError } from "@/api/api.client";
 import { authApi } from "@/api/auth.api";
 import { useRouter } from "@/navigation";
+import type { AuthUser } from "@/types/authTypes";
 
 import type {
   ForgotPasswordValues,
@@ -11,7 +12,6 @@ import type {
   RegisterValues
 } from "../schemas/authSchemas";
 import useAuthStore from "../store/authStore";
-import type { AuthUser } from "../types/auth.types";
 
 type Message = { message: string };
 

@@ -5,9 +5,9 @@ import { useTranslations } from "next-intl";
 
 import { isApiError } from "@/api/api.client";
 import { Link } from "@/navigation";
+import { Button } from "@/shared/components/Button";
 import EmptyState from "@/shared/components/EmptyState";
-import { Button } from "@/shared/components/ui/button";
-import { Spinner } from "@/shared/components/ui/spinner";
+import { Spinner } from "@/shared/components/Spinner";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
 
 import { useTicket } from "../hooks/useTicketQueries";

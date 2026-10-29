@@ -7,12 +7,11 @@ import type { ReactNode } from "react";
 
 import useAuthStore from "@/modules/auth/store/authStore";
 import { useRouter } from "@/navigation";
+import { Button } from "@/shared/components/Button";
+import EmptyState from "@/shared/components/EmptyState";
 import { useCurrentMembership } from "@/shared/hooks/useOrgContext";
 import { useRealtimeSync } from "@/shared/hooks/useRealtimeSync";
-import { isStaffRole } from "@/types/role.types";
-
-import EmptyState from "../EmptyState";
-import { Button } from "../ui/button";
+import { isStaffRole } from "@/shared/utils/role.utils";
 
 export default function OrgGate({ children }: { children: ReactNode }) {
   const t = useTranslations();

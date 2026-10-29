@@ -12,14 +12,18 @@ export default function PageHeader({
   actions
 }: PageHeaderProps) {
   return (
-    <div className='mb-6 flex flex-wrap items-end justify-between gap-4'>
-      <div className='space-y-1'>
-        <h1 className='text-2xl font-semibold tracking-tight'>{title}</h1>
+    <div className='mb-8 flex flex-wrap items-end justify-between gap-4'>
+      <div className='space-y-1.5'>
+        <h1 className='text-[28px] leading-tight font-bold tracking-tight'>
+          {title}
+        </h1>
         {description && (
-          <p className='text-muted-foreground text-sm'>{description}</p>
+          <p className='text-muted-foreground max-w-2xl text-sm'>
+            {description}
+          </p>
         )}
       </div>
-      {actions && <div className='flex gap-2'>{actions}</div>}
+      {actions && <div className='flex flex-wrap gap-2'>{actions}</div>}
     </div>
   );
 }

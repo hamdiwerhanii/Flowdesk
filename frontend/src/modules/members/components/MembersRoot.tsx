@@ -4,21 +4,21 @@ import { AlertTriangle, Trash2, UserPlus, Users } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
+import { Button } from "@/shared/components/Button";
+import { Card } from "@/shared/components/Card";
 import EmptyState from "@/shared/components/EmptyState";
+import { Input, Select } from "@/shared/components/Input";
 import PageHeader from "@/shared/components/PageHeader";
 import Pagination from "@/shared/components/Pagination";
-import { Button } from "@/shared/components/ui/button";
-import { Card } from "@/shared/components/ui/card";
-import { Input, Select } from "@/shared/components/ui/input";
-import { Spinner } from "@/shared/components/ui/spinner";
-import { Table, TBody, TD, TH, THead, TR } from "@/shared/components/ui/table";
+import { Spinner } from "@/shared/components/Spinner";
+import { Table, TBody, TD, TH, THead, TR } from "@/shared/components/Table";
 import { useFormatters } from "@/shared/hooks/useFormatters";
 import { useOrgContext } from "@/shared/hooks/useOrgContext";
-import { Role } from "@/types/role.types";
+import type { Member, MemberFilters } from "@/types/memberTypes";
+import { Role } from "@/types/roleTypes";
 
 import { useMemberMutations } from "../hooks/useMemberMutations";
 import { useMembers } from "../hooks/useMemberQueries";
-import type { Member, MemberFilters } from "../types/member.types";
 import AddMemberForm from "./AddMemberForm";
 
 const SEARCH_DEBOUNCE_MS = 300;

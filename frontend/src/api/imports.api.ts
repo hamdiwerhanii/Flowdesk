@@ -1,7 +1,4 @@
-import type {
-  ImportBatch,
-  ImportBatchDetail
-} from "@/modules/imports/types/import.types";
+import type { ImportBatch, ImportBatchDetail } from "@/types/importTypes";
 
 import { apiClient } from "./api.client";
 

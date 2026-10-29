@@ -327,5 +327,12 @@
     "passwordChanged": "Password changed. Please log in again.",
     "newTicket": "New ticket received",
     "newAccountRequest": "New account request waiting for approval"
+  },
+  "authBrand": {
+    "title": "Every customer question, answered as a team.",
+    "subtitle": "Tickets, real-time updates and internal notes in one calm workspace.",
+    "point1": "Live updates across your team",
+    "point2": "Private internal notes",
+    "point3": "Imports and email notifications"
   }
 }

@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 export const fieldClassName =
-  "w-full rounded-lg border border-input bg-card px-3 text-sm placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none disabled:opacity-60 aria-invalid:border-danger";
+  "w-full rounded-xl border border-input bg-card px-3.5 text-sm shadow-xs transition-colors placeholder:text-muted-foreground/80 hover:border-primary/40 focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-ring/40 focus-visible:outline-none disabled:bg-muted disabled:opacity-70 aria-invalid:border-danger aria-invalid:ring-danger/15";
 
 export function Input({ className, ...props }: ComponentProps<"input">) {
   return <input className={cn(fieldClassName, "h-10", className)} {...props} />;
@@ -25,5 +25,10 @@ export function Select({ className, ...props }: ComponentProps<"select">) {
 }
 
 export function Label({ className, ...props }: ComponentProps<"label">) {
-  return <label className={cn("text-sm font-medium", className)} {...props} />;
+  return (
+    <label
+      className={cn("text-foreground/90 text-sm font-semibold", className)}
+      {...props}
+    />
+  );
 }

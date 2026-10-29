@@ -1,5 +1,5 @@
-import type { PublicUser } from "@/types/api.types";
-import type { Role } from "@/types/role.types";
+import type { PublicUser } from "@/types/apiTypes";
+import type { Role } from "@/types/roleTypes";
 
 export type Member = {
   id: string;

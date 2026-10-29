@@ -1,10 +1,10 @@
+import type { Paginated } from "@/types/apiTypes";
 import type {
   CreateMemberInput,
   Member,
   MemberFilters
-} from "@/modules/members/types/member.types";
-import type { Paginated } from "@/types/api.types";
-import type { Role } from "@/types/role.types";
+} from "@/types/memberTypes";
+import type { Role } from "@/types/roleTypes";
 
 import { apiClient, toQueryString } from "./api.client";
 

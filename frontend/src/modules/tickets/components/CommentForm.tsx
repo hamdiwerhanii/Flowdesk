@@ -6,9 +6,9 @@ import { useTranslations } from "next-intl";
 import { useForm, useWatch } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/shared/components/ui/button";
-import { Textarea } from "@/shared/components/ui/input";
-import { Spinner } from "@/shared/components/ui/spinner";
+import { Button } from "@/shared/components/Button";
+import { Textarea } from "@/shared/components/Input";
+import { Spinner } from "@/shared/components/Spinner";
 
 import { useAddComment } from "../hooks/useTicketMutations";
 import { commentSchema, type CommentValues } from "../schemas/ticketSchemas";
@@ -50,8 +50,7 @@ export default function CommentForm({
       onSubmit={submit}
       className={cn(
         "bg-card space-y-3 rounded-xl border p-4",
-        isInternal &&
-          "border-amber-300 bg-amber-50/60 dark:border-amber-800 dark:bg-amber-950/30"
+        isInternal && "border-amber-300 bg-amber-50/60"
       )}
     >
       <label htmlFor='comment' className='sr-only'>

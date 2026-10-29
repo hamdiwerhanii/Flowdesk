@@ -1,4 +1,4 @@
-import type { PublicUser } from "@/types/api.types";
+import type { PublicUser } from "@/types/apiTypes";
 
 import { apiClient } from "./api.client";
 

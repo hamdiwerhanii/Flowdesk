@@ -1,6 +1,7 @@
 import "../globals.css";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
@@ -13,6 +14,17 @@ export const metadata: Metadata = {
   title: { default: "Flowdesk", template: "%s · Flowdesk" },
   description: "Helpdesk for teams and their customers"
 };
+
+export const viewport: Viewport = {
+  colorScheme: "only light",
+  themeColor: "#f6f7f9"
+};
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap"
+});
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));
@@ -32,7 +44,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={jakarta.variable}>
       <body>
         <NextIntlClientProvider>
           <Providers>{children}</Providers>

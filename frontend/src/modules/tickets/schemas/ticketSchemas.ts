@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { TicketPriority } from "../types/ticket.types";
+import { TicketPriority } from "@/types/ticketTypes";
 
 const ticketFields = {
   subject: z

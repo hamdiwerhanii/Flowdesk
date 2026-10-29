@@ -5,10 +5,10 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { Link } from "@/navigation";
+import { Button } from "@/shared/components/Button";
 import Field from "@/shared/components/Field";
-import { Button } from "@/shared/components/ui/button";
-import { Input } from "@/shared/components/ui/input";
-import { Spinner } from "@/shared/components/ui/spinner";
+import { Input } from "@/shared/components/Input";
+import { Spinner } from "@/shared/components/Spinner";
 
 import { useRegisterOrganization } from "../hooks/useAuthMutations";
 import {

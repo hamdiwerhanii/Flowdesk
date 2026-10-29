@@ -1,8 +1,9 @@
 import { useParams } from "next/navigation";
 
 import useAuthStore from "@/modules/auth/store/authStore";
-import type { MembershipSummary } from "@/modules/auth/types/auth.types";
-import { isStaffRole, type Role } from "@/types/role.types";
+import { isStaffRole } from "@/shared/utils/role.utils";
+import type { MembershipSummary } from "@/types/authTypes";
+import { type Role } from "@/types/roleTypes";
 
 export function useCurrentMembership(): MembershipSummary | undefined {
   const { orgSlug } = useParams<{ orgSlug: string }>();
